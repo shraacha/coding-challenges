@@ -13,6 +13,9 @@ import java.util.*;
     Program title:         Adapter Array 2
     Programmed by:         Anish Racharla
     Date:                  Wednesday, 2021/6/9
+
+    Used the help of "Alvin the Programmer" on youtube and "geeksforgeegs" site on Dynamic Programming.
+    Youtube link: https://www.youtube.com/watch?v=_f8N7qo_5hA
  */
 public class AdapterArray2 {
 
