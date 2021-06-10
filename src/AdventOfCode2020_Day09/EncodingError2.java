@@ -26,7 +26,7 @@ public class EncodingError2 {
 
         long lNum, lSum;
 
-        String word;
+        String strWord;
 
         boolean bValid;
 
@@ -39,8 +39,8 @@ public class EncodingError2 {
 
         try {
             br = new BufferedReader(new FileReader("Input\\Day09_Input.txt"));
-            while ((word = br.readLine()) != null) {
-                arListInput.add(Long.parseLong(word));
+            while ((strWord = br.readLine()) != null) {
+                arListInput.add(Long.parseLong(strWord));
             }
         } catch (IOException e) {
             e.printStackTrace();

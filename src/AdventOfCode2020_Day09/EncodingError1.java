@@ -24,7 +24,7 @@ public class EncodingError1 {
         nIndex = 0;
         nPreamble = 25;
         
-        String word;
+        String strWord;
         
         boolean bValid;
         
@@ -35,8 +35,8 @@ public class EncodingError1 {
 
         try {
             br = new BufferedReader(new FileReader("Input\\Day09_Input.txt"));
-            while ((word = br.readLine()) != null) {
-                arListInput.add(Long.parseLong(word));
+            while ((strWord = br.readLine()) != null) {
+                arListInput.add(Long.parseLong(strWord));
             }
         } catch (IOException e) {
             e.printStackTrace();
