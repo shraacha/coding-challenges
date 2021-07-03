@@ -55,8 +55,8 @@ public class SeatingSystem1 {
         nRows = arListMap1.size();
         nCols = arListMap1.get(0).length();
 
-        //Using a while loop to switch continually switch which map is being checked and which one is being modified (by using the boolean "bCycle")
-        //and also to check whether the current and previous maps are the same (they have reached stability and no seats have changed state)
+        //Using a while loop to check if bEquals is true or not. If bEquals is true, meaning the new seat map and the previous seat map are identical,
+        //the loop will stop (meaning that they have reached stability and no seats have changed state)
         while (!bEquals) {
             //This variable counts how many occupied seats there are in total (the puzzle output)
             nTotOccupiedCount = 0;
