@@ -58,7 +58,11 @@ public class AdapterArray1 {
         //Getting the product of the # of differences of 1 and 3
         nProd = arnDiff[0] * arnDiff[1];
         
-        System.out.println("The number of 1-jolt differences is: " + arnDiff[0] + "\nThe number of 3-jolt differences is: " + arnDiff[1] + "\nThe product is: " + nProd);
+        //Output with extra info
+//        System.out.println("The number of 1-jolt differences is: " + arnDiff[0] + "\nThe number of 3-jolt differences is: " + arnDiff[1] + "\nThe product is: " + nProd);
+        
+        //Puzzle output
+        System.out.println(nProd);
     }
     
     //Simple insertion sort method.

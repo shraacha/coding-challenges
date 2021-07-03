@@ -60,7 +60,11 @@ public class EncodingError1 {
             }
         }
         
-        System.out.println("The first number that does not have this property is: " + arListInput.get(nIndex) + " at index: " + nIndex);
+        //Output with extra info
+//        System.out.println("The first number that does not have this property is: " + arListInput.get(nIndex) + " at index: " + nIndex);
+        
+        //Puzzle output
+        System.out.println(arListInput.get(nIndex));
     }
     
     //This method simply goes through the nPreamble (in this case 25) entries before the passed entry and checks whether the passed entry 

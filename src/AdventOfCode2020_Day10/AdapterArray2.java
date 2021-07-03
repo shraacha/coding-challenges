@@ -63,7 +63,11 @@ public class AdapterArray2 {
         
         lPaths = countPaths(arListEntries, 0);
         
-        System.out.println("The total number of distinct paths is: " + lPaths);
+        //Output with extra info
+//        System.out.println("The total number of distinct paths is: " + lPaths);
+        
+        //Puzzle output
+        System.out.println(lPaths);
     }
     
     //Simple insertion sort method.

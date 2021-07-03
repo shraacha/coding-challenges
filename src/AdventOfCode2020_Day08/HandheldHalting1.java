@@ -87,13 +87,17 @@ public class HandheldHalting1 {
                     System.out.println("Error");
                 }
                 
-                nStepCounter ++;                                                //TEST
+//                nStepCounter ++;                                                //TEST
             }
         }
-
-        System.out.println("The accumulator value is: " + nAcc);
         
-        System.out.println("Steps: " + nStepCounter);                           //TEST
+        //Output with extra info
+//        System.out.println("The accumulator value is: " + nAcc);
+        
+        //Puzzle output
+        System.out.println(nAcc);
+        
+//        System.out.println("Steps: " + nStepCounter);                           //TEST
     }
     
     //Simple insertion sort method

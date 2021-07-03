@@ -48,8 +48,12 @@ public class TobogganTrajectory1 {
         String[] arstrLines = arListEntries.toArray(new String[nListLength]);
 
         nTreeCount = treeCounter(arstrLines, 3, 1);
-
-        System.out.println("The number of trees encountered in this path is: " + nTreeCount);
+        
+        //Output with extra info
+//        System.out.println("The number of trees encountered in this path is: " + nTreeCount);
+        
+        //Puzzle output
+        System.out.println(nTreeCount);
     }
 
     public static int treeCounter(String[] arstrLines, int nRight, int nDown) {

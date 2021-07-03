@@ -81,9 +81,11 @@ public class BinaryBoarding2 {
 //            }
 //        }
         
-        //Challenge answer
-        System.out.println("Your seat ID is: " + nMissing);
+        //Output with extra info
+//        System.out.println("Your seat ID is: " + nMissing);
 
+        //Puzzle output
+        System.out.println(nMissing);
     }
     
     //Basically a recursive binary search method without any comparing since the input gives the instrctions). Finds & returns the row or column number.

@@ -90,8 +90,12 @@ public class HandheldHalting2 {
 
             arnIndexAcc = executeBoot(arListEntries);
         }
-
-        System.out.println("The accumulator value is: " + arnIndexAcc[1]);
+        
+        //Output with extra info
+//        System.out.println("The accumulator value is: " + arnIndexAcc[1]);
+        
+        //Puzzle output
+        System.out.println(arnIndexAcc[1]);
     }
 
     //Simple insertion sort method

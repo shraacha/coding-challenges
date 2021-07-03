@@ -70,8 +70,12 @@ public class EncodingError2 {
         
         lSum = findExtremity(arListSumSet, true) + findExtremity(arListSumSet, false);
         
-        System.out.println("The first number that does not have this property is: " + lNum + " at index: " + nIndex);
-        System.out.println("The ecryption weakness is: " + lSum);
+        //Output with extra info
+//        System.out.println("The first number that does not have this property is: " + lNum + " at index: " + nIndex);
+//        System.out.println("The ecryption weakness is: " + lSum);
+        
+        //Puzzle output
+        System.out.println(lSum);
     }
 
     //This method simply goes through the nPreamble (in this case 25) entries before the passed entry and checks whether the passed entry 

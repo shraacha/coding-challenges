@@ -73,8 +73,13 @@ public class HandyHaversacks1 {
                 nCount++;
             }
         }
-
-        System.out.println("The number of bags able to hold a shiny gold bag is: " + nCount);
+        
+        
+        //Output with extra info
+//        System.out.println("The number of bags able to hold a shiny gold bag is: " + nCount);
+        
+        //Puzzle output
+        System.out.println(nCount);
     }
 
     public static ArrayList<String> processLine(String[] arstrParents, int nIndex) {

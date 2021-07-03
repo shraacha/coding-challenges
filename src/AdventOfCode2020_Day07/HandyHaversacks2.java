@@ -69,8 +69,13 @@ public class HandyHaversacks2 {
 //        System.out.println(nIndex);
         
         nCount = numContained(arstrParents, arlistarlistChildrenInfo, nIndex, 0, 1);
-
-        System.out.println("The number of bags inside a shiny gold bag is: " + nCount);
+        
+        
+        //Output with extra info
+//        System.out.println("The number of bags inside a shiny gold bag is: " + nCount);
+        
+        //Puzzle output
+        System.out.println(nCount);
     }
 
     public static ArrayList<ArrayList> processLine(String[] arstrParents, int nIndex) {

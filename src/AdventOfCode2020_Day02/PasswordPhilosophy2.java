@@ -54,8 +54,12 @@ public class PasswordPhilosophy2 {
                 nValidCount++;
             }
         }
-
-        System.out.println("The number of valid passwords: " + nValidCount);
+        
+        //Output with extra info
+//        System.out.println("The number of valid passwords: " + nValidCount);
+        
+        //Puzzle output
+        System.out.println(nValidCount);
     }
 
     public static boolean returnValid(String strPolPass) {

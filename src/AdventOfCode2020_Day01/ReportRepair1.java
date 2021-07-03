@@ -69,9 +69,12 @@ public class ReportRepair1 {
         //Getting the product of the two numbers.
         nProduct = nNum1 * nNum2;
         
-        //Output
-        System.out.println("The two entries that sum to 2020 are: " + nNum1 + " + " + nNum2 + " = " + (nNum1 + nNum2));
-        System.out.println("Their product is: " + nProduct);
+        //Output with extra info
+//        System.out.println("The two entries that sum to 2020 are: " + nNum1 + " + " + nNum2 + " = " + (nNum1 + nNum2));
+//        System.out.println("Their product is: " + nProduct);
+        
+        //Puzzle output
+        System.out.println(nProduct);
 
     }
 

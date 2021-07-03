@@ -61,10 +61,15 @@ public class TobogganTrajectory2 {
         for (int i = 0 ; i < arnTreeCount.length; i++){
             lProduct *= arnTreeCount[i];
             
-            System.out.println("The number of trees encountered in path" + (i+1) + " is : " + arnTreeCount[i]);
+            //TEST
+//            System.out.println("The number of trees encountered in path" + (i+1) + " is : " + arnTreeCount[i]);
         }
         
-        System.out.println("The product of these numbers is : " + lProduct);
+        //Output with extra info
+//        System.out.println("The product of these numbers is : " + lProduct);
+        
+        //Puzzle output
+        System.out.println(lProduct);
     }
 
     public static int treeCounter(String[] arstrLines, int nRight, int nDown) {

@@ -61,7 +61,11 @@ public class BinaryBoarding1 {
             }
         }
         
-        System.out.println("The highest seat ID is: " + nHighID);
+        //Output with extra info
+//        System.out.println("The highest seat ID is: " + nHighID);
+        
+        //Puzzle output
+        System.out.println(nHighID);
     }
     
     public static int findRowCol(String strInstr, char cLower, char cUpper, int nLeft, int nRight, int nCount, int nMax) {

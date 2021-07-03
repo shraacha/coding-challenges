@@ -63,7 +63,12 @@ public class CustomCustoms1 {
             nSum += countAns(arListEntries.get(i));
         }
         
-        System.out.println("The sum of the counts from each group is: " + nSum);
+        
+        //Output with extra info
+//        System.out.println("The sum of the counts from each group is: " + nSum);
+        
+        //Puzzle output
+        System.out.println(nSum);
     }
 
     public static int countAns(String strGroupAns) {

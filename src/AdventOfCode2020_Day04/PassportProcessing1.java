@@ -61,12 +61,15 @@ public class PassportProcessing1 {
                 nValidCount++;
             }
         }
-
-        System.out.println("Example input line: " + arListEntries.get(0) + "\n\n ");
         
-        System.out.println("");
+        //TEST
+//        System.out.println("Example input line: " + arListEntries.get(0) + "\n");
         
-        System.out.println("The number of valid passports is: " + nValidCount);
+        //Output with extra info
+//        System.out.println("The number of valid passports is: " + nValidCount);
+        
+        //Puzzle output
+        System.out.println(nValidCount);
     }
 
     public static boolean isValid(String strLine) {

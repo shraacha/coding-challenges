@@ -63,8 +63,12 @@ public class PassportProcessing2 {
                 }
             }
         }
-
-        System.out.println("The number of valid passports is: " + nValidCount);
+        
+        //Output with extra info
+//        System.out.println("The number of valid passports is: " + nValidCount);
+        
+        //Puzzle output
+        System.out.println(nValidCount);
     }
 
     public static boolean fieldsPresent(String strLine) {
