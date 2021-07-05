@@ -22,6 +22,19 @@ public class RainRisk1 {
     static int nFacing, nX, nY;
 
     public static void main(String[] args) {
+        /*
+        *                     ↑ N (0)
+        *                     |
+        *                     |
+        *                     |
+        *         W (1)       |
+        *         ←──────┼──────→ E (1)
+        *                     |
+        *                     |
+        *                     |
+        *                     |
+        *                     ↓ S (2)
+        */
         nFacing = 1;
 
         int nVal;
