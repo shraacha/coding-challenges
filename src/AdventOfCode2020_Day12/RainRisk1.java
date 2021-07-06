@@ -24,12 +24,12 @@ public class RainRisk1 {
     public static void main(String[] args) {
         /*
         *                     ↑ N (0)
-        *                     |
+        *                     | y+
         *                     |
         *                     |
         *         W (3)       |
         *         ←-----------+-----------→ E (1)
-        *                     |
+        *                     |              x+
         *                     |
         *                     |
         *                     |

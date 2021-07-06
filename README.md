@@ -1,6 +1,6 @@
 # **Advent of Code 2020**
 
-Here is a repository of my personal solutions for the [2020 Advent of Code](https://adventofcode.com/2020) challenges, written in Java 8.
+Here is a repository of my personal solutions for the [2020 Advent of Code](https://adventofcode.com/2020) challenges, written in Java 8 using Apache NetBeans 12.
 
 Each puzzle solution is its own main class under [src](src)\/\<corresponding day>.
 
