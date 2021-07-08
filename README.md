@@ -9,4 +9,4 @@ Each of the puzzle inputs (and some test inputs I used) can be found under [Inpu
 I won't be attempting to write the most optimized code possible, but will be trying to make use of any recent techniques I've learned.
 
 To Do:
--[ ] Day 13 part 2
+- [ ] Day 13 part 2
