@@ -1,5 +1,5 @@
 pub fn sol1() {
-    let input = include_str!("../inputs/day_01.txt");
+    let input = include_str!("../inputs/day01.txt");
 
     //println!("To the joker this is regular input: \n{input}");
 
@@ -25,7 +25,7 @@ pub fn sol1() {
 }
 
 pub fn sol2() {
-    let input = include_str!("../inputs/day_01.txt");
+    let input = include_str!("../inputs/day01.txt");
 
     let mut maxes = vec![0, 0, 0];
 
@@ -41,7 +41,6 @@ pub fn sol2() {
         }
 
         for i in 0..maxes.len() {
-            println!("i: {}, maxes: {:?}", i, maxes);
             if curr > maxes[i] {
                 maxes.insert(i, curr);
                 maxes.pop();
