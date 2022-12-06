@@ -1,6 +1,6 @@
 use::core::str::Chars;
 
-pub fn sol1() {
+pub fn a () {
     let mut input = include_str!("../inputs/day02.txt").to_string(); // getting input as a string, cannot pop the last newline without `to_string`, figure out why
 
     // using pop to get rid of trailing newline
@@ -32,7 +32,7 @@ pub fn sol1() {
 // Player still gets 0/3/6 points for loss/draw/win
 // Player still gets 1/2/3 points for playing R/P/S
 
-pub fn sol2() {
+pub fn b () {
     let mut input = include_str!("../inputs/day02.txt").to_string();
 
     input.pop();

@@ -1,4 +1,4 @@
-pub fn sol1() {
+pub fn a() {
     let input = include_str!("../inputs/day01.txt");
 
     //println!("To the joker this is regular input: \n{input}");
@@ -24,7 +24,7 @@ pub fn sol1() {
     println!("day01 sol1: {max}");
 }
 
-pub fn sol2() {
+pub fn b() {
     let input = include_str!("../inputs/day01.txt");
 
     let mut maxes = vec![0, 0, 0];

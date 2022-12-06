@@ -1,4 +1,4 @@
-pub fn sol1 () {
+pub fn a () {
     let input = include_str!("../inputs/day03.txt");
 
     let output = input
@@ -38,7 +38,7 @@ pub fn sol1 () {
     println!("day03 sol1: {}", output);
 }
 
-pub fn sol2() {
+pub fn b () {
     let input = include_str!("../inputs/day03.txt");
 
     let output = input
