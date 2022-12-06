@@ -12,4 +12,5 @@ fn main() {
     //day02::sol2();
 
     day03::sol1();
+    day03::sol2();
 }
