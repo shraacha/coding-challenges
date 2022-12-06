@@ -48,23 +48,20 @@ pub fn sol2() {
         .chunks(3)                  // splitting lines into groups of 3
         .fold(0, |mut acc1, x|{     // iterating over all of the groups
             let badge = x.iter()    // iterating over elves in each group
-                         .fold(!0b0u64, |mut acc2, y| {                 // want to keep all items in first sack, so init acc is max int
-                             acc2 = y.chars()                           // getting a new binary number representing the items similar between curr and prev sacks
-                                     .fold(0b0u64, |mut acc3, z| {
-                                         let shift = match z as u64 {
-                                             65..=90 => (z as u64) - 65 + 26,
-                                             _ => (z as u64) - 97,
-                                         };
+                .fold(!0b0u64, |acc2, y| {                 // want to keep all items in first sack, so init acc is max int
+                    let curr_bag = y.chars()                           // getting a new binary number representing the items in the current bag
+                        .fold(0b0u64, |acc3, z| {
+                            let shift = match z as u64 {
+                                65..=90 => (z as u64) - 65 + 26,
+                                _ => (z as u64) - 97,
+                            };
 
-                                         if (acc2 & (0b1u64 << shift)) >> shift != 0 {   // checking if the curr char is in the previous sack
-                                             acc3 |= 0b1u64 << shift;
-                                         }
+                            acc3 | 0b1u64 << shift
+                        });
 
-                                         acc3
-                                     });
-                             acc2
-                         })
-                         .ilog2();
+                    acc2 & curr_bag // AND-ing the last bag and the current bag contents
+                })
+                .ilog2();           // the resulting number should be a neat power of 2, corresponding to the badge letter
 
             acc1 += badge + 1;
 
