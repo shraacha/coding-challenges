@@ -26,7 +26,7 @@ pub fn a () {
             acc
         });
 
-    println!("day02 sol1: {}", total_score);
+    println!("day02 a: {}", total_score);
 }
 
 // Player still gets 0/3/6 points for loss/draw/win
@@ -56,6 +56,6 @@ pub fn b () {
             acc
         });
 
-    println!("day02 sol2: {}", total_score);
+    println!("day02 b: {}", total_score);
 
 }

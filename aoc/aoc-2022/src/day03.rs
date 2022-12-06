@@ -35,7 +35,7 @@ pub fn a () {
             acc
         });
 
-    println!("day03 sol1: {}", output);
+    println!("day03 a: {}", output);
 }
 
 pub fn b () {
@@ -68,5 +68,5 @@ pub fn b () {
             acc1
         });
 
-    println!("day03 sol2: {}", output);
+    println!("day03 b: {}", output);
 }

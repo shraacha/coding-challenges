@@ -21,7 +21,7 @@ pub fn a() {
         }
     }
 
-    println!("day01 sol1: {max}");
+    println!("day01 a: {max}");
 }
 
 pub fn b() {
@@ -50,5 +50,5 @@ pub fn b() {
     }
 
     let sum: i64 = maxes.iter().sum();
-    println!("day01 sol2: {}", sum);
+    println!("day01 b: {}", sum);
 }
