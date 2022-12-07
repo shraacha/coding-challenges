@@ -1,15 +1,17 @@
 pub fn a () {
-    let input = include_str!("../inputs/dayXX.txt");
+    let input : _ = include_str!("../inputs/day07_test.txt").split_terminator('\n').collect::<String>();
+
+    dbg!(input);
 
     let output = 0;
 
-    println!("dayXX a: {output}");
+    println!("day07 a: {output}");
 }
 
 pub fn b () {
-    let input = include_str!("../inputs/dayXX.txt");
+    let input = include_str!("../inputs/day07_test.txt");
 
     let output = 0;
 
-    println!("dayXX b: {output}");
+    println!("day07 b: {output}");
 }
