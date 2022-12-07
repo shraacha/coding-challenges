@@ -20,6 +20,8 @@ pub fn a () {
             // the right end of A should be >= the right end of B,
             // i.e. multiplying the differences in indexes of these ends
             // gives us a result <= 0 if one range contains the other
+            //
+            // could also check if l1 > r2 or if l2 > r2, quite simple
             if (a - x) * (b - y) <= 0 {
                 acc + 1
             } else {
