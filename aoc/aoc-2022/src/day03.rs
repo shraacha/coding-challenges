@@ -1,4 +1,3 @@
-#![feature(int_log)]
 use std::fs;
 
 #[inline]
