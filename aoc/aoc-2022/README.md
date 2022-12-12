@@ -1,6 +1,6 @@
-# Advent of Code 2022
+# Advent of Code 2022 
 
-https://github.com/shracha10/coding-challenges/actions/workflows/aoc-2022/badge.svg
+![aoc-2022 CI badge](https://github.com/shracha10/coding-challenges/actions/workflows/aoc-2022/badge.svg)
 
 Here are my solutions for AoC 2022. I'm writing them in Rust to help me learn the language.
 
