@@ -2,7 +2,8 @@ name: aoc-2022
 
 on:
   push:
-  pull_request:
+    paths:
+      - aoc/aoc-2022/**
 
 env: 
   CARGO_TERM_COLOR: always
