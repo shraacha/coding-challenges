@@ -1,5 +1,4 @@
 #![allow(dead_code)]
-#![feature(int_log)]
 
 mod day01;
 mod day02;
@@ -37,113 +36,70 @@ fn main() {
 }
 
 #[cfg(test)]
-mod day01_tests {
-    use super::day01;
+mod tests {
+    use super::*;
 
     #[test]
-    fn day01a_ex() {assert_eq!(24000, day01::a("./inputs/day01_ex.txt"));}
-    #[test]
-    fn day01a() {assert_eq!(68775, day01::a("./inputs/day01.txt"));}
-    #[test]
-    fn day01b_ex() {assert_eq!(45000, day01::b("./inputs/day01_ex.txt"));}
-    #[test]
-    fn day01b() {assert_eq!(202585, day01::b("./inputs/day01.txt"));}
-}
-
-#[cfg(test)]
-mod day02_tests {
-    use super::day02;
+    fn day01_tests() {
+        assert_eq!(24000, day01::a("./inputs/day01_ex.txt"));
+        assert_eq!(68775, day01::a("./inputs/day01.txt"));
+        assert_eq!(45000, day01::b("./inputs/day01_ex.txt"));
+        assert_eq!(202585, day01::b("./inputs/day01.txt"));
+    }
 
     #[test]
-    fn day02a_ex() {assert_eq!(15, day02::a("./inputs/day02_ex.txt"));}
-    #[test]
-    fn day02a() {assert_eq!(9241, day02::a("./inputs/day02.txt"));}
-    #[test]
-    fn day02b_ex() {assert_eq!(12, day02::b("./inputs/day02_ex.txt"));}
-    #[test]
-    fn day02b() {assert_eq!(14610, day02::b("./inputs/day02.txt"));}
-}
-
-#[cfg(test)]
-mod day03_tests {
-    use super::day03;
+    fn day02_tests() {
+        assert_eq!(15, day02::a("./inputs/day02_ex.txt"));
+        assert_eq!(9241, day02::a("./inputs/day02.txt"));
+        assert_eq!(12, day02::b("./inputs/day02_ex.txt"));
+        assert_eq!(14610, day02::b("./inputs/day02.txt"));
+    }
 
     #[test]
-    fn day03a_ex() {assert_eq!(157, day03::a("./inputs/day03_ex.txt"));}
-    #[test]
-    fn day03a() {assert_eq!(8252, day03::a("./inputs/day03.txt"));}
-    #[test]
-    fn day03b_ex() {assert_eq!(70, day03::b("./inputs/day03_ex.txt"));}
-    #[test]
-    fn day03b() {assert_eq!(2828, day03::b("./inputs/day03.txt"));}
-}
-
-#[cfg(test)]
-mod day04_tests {
-    use super::day04;
+    fn day03_tests() {
+        assert_eq!(157, day03::a("./inputs/day03_ex.txt"));
+        assert_eq!(8252, day03::a("./inputs/day03.txt"));
+        assert_eq!(70, day03::b("./inputs/day03_ex.txt"));
+        assert_eq!(2828, day03::b("./inputs/day03.txt"));
+    }
 
     #[test]
-    fn day04a_ex() {assert_eq!(2, day04::a("./inputs/day04_ex.txt"));}
-    #[test]
-    fn day04a() {assert_eq!(576, day04::a("./inputs/day04.txt"));}
-    #[test]
-    fn day04b_ex() {assert_eq!(4, day04::b("./inputs/day04_ex.txt"));}
-    #[test]
-    fn day04b() {assert_eq!(905, day04::b("./inputs/day04.txt"));}
-}
-
-#[cfg(test)]
-mod day05_tests {
-    use super::day05;
+    fn day04_tests() {
+        assert_eq!(2, day04::a("./inputs/day04_ex.txt"));
+        assert_eq!(576, day04::a("./inputs/day04.txt"));
+        assert_eq!(4, day04::b("./inputs/day04_ex.txt"));
+        assert_eq!(905, day04::b("./inputs/day04.txt"));
+    }
 
     #[test]
-    fn day05a_ex() {assert_eq!("CMZ".to_string(), day05::a("./inputs/day05_ex.txt"));}
-    #[test]
-    fn day05a() {assert_eq!("MQSHJMWNH".to_string(), day05::a("./inputs/day05.txt"));}
-    #[test]
-    fn day05b_ex() {assert_eq!("MCD".to_string(), day05::b("./inputs/day05_ex.txt"));}
-    #[test]
-    fn day05b() {assert_eq!("LLWJRBHVZ".to_string(), day05::b("./inputs/day05.txt"));}
-}
-
-#[cfg(test)]
-mod day06_tests {
-    use super::day06;
+    fn day05_tests() {
+        assert_eq!("CMZ".to_string(), day05::a("./inputs/day05_ex.txt"));
+        assert_eq!("MQSHJMWNH".to_string(), day05::a("./inputs/day05.txt"));
+        assert_eq!("MCD".to_string(), day05::b("./inputs/day05_ex.txt"));
+        assert_eq!("LLWJRBHVZ".to_string(), day05::b("./inputs/day05.txt"));
+    }
 
     #[test]
-    fn day06a_ex() {assert_eq!(7, day06::a("./inputs/day06_ex.txt"));}
-    #[test]
-    fn day06a() {assert_eq!(1892, day06::a("./inputs/day06.txt"));}
-    #[test]
-    fn day06b_ex() {assert_eq!(19, day06::b("./inputs/day06_ex.txt"));}
-    #[test]
-    fn day06b() {assert_eq!(2313, day06::b("./inputs/day06.txt"));}
-}
-
-#[cfg(test)]
-mod day07_tests {
-    use super::day07;
+    fn day06_tests() {
+        assert_eq!(7, day06::a("./inputs/day06_ex.txt"));
+        assert_eq!(1892, day06::a("./inputs/day06.txt"));
+        assert_eq!(19, day06::b("./inputs/day06_ex.txt"));
+        assert_eq!(2313, day06::b("./inputs/day06.txt"));
+    }
 
     #[test]
-    fn day07a_ex() {assert_eq!(95437, day07::a("./inputs/day07_ex.txt"));}
-    #[test]
-    fn day07a() {assert_eq!(1182909, day07::a("./inputs/day07.txt"));}
-    #[test]
-    fn day07b_ex() {assert_eq!(24933642, day07::b("./inputs/day07_ex.txt"));}
-    #[test]
-    fn day07b() {assert_eq!(2832508, day07::b("./inputs/day07.txt"));}
-}
-
-#[cfg(test)]
-mod day08_tests {
-    use super::day08;
+    fn day07_tests() {
+        assert_eq!(95437, day07::a("./inputs/day07_ex.txt"));
+        assert_eq!(1182909, day07::a("./inputs/day07.txt"));
+        assert_eq!(24933642, day07::b("./inputs/day07_ex.txt"));
+        assert_eq!(2832508, day07::b("./inputs/day07.txt"));
+    }
 
     #[test]
-    fn day08a_ex() {assert_eq!(21, day08::a("./inputs/day08_ex.txt"));}
-    #[test]
-    fn day08a() {assert_eq!(1789, day08::a("./inputs/day08.txt"));}
-    #[test]
-    fn day08b_ex() {assert_eq!(8, day08::b("./inputs/day08_ex.txt"));}
-    #[test]
-    fn day08b() {assert_eq!(314820, day08::b("./inputs/day08.txt"));}
+    fn day08_tests() {
+        assert_eq!(21, day08::a("./inputs/day08_ex.txt"));
+        assert_eq!(1789, day08::a("./inputs/day08.txt"));
+        assert_eq!(8, day08::b("./inputs/day08_ex.txt"));
+        assert_eq!(314820, day08::b("./inputs/day08.txt"));
+    }
 }
