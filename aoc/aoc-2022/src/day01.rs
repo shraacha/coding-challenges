@@ -1,5 +1,7 @@
-pub fn a() {
-    let input = include_str!("../inputs/day01.txt");
+use std::fs;
+
+pub fn a(input_file: &str) -> i64{
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     //println!("To the joker this is regular input: \n{input}");
 
@@ -21,11 +23,12 @@ pub fn a() {
         }
     }
 
-    println!("day01 a: {max}");
+    //println!("day01 a: {max}");
+    max
 }
 
-pub fn b() {
-    let input = include_str!("../inputs/day01.txt");
+pub fn b(input_file: &str) -> i64 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let mut maxes = vec![0, 0, 0];
 
@@ -49,6 +52,7 @@ pub fn b() {
         }
     }
 
+    // println!("day01 b: {}", sum);
     let sum: i64 = maxes.iter().sum();
-    println!("day01 b: {}", sum);
+    sum
 }

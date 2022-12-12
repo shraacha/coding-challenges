@@ -1,5 +1,7 @@
-pub fn a () {
-    let input = include_str!("../inputs/day06.txt").to_string();
+use std::fs;
+
+pub fn a (input_file: &str) -> i32 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let mut output = 0;
 
@@ -14,12 +16,12 @@ pub fn a () {
         }
     }
 
-    println!("day06 a: {output}");
+    output as i32
 }
 
 // only solution difference from part a is code size
-pub fn b () {
-    let input = include_str!("../inputs/day06.txt");
+pub fn b (input_file: &str) -> i32 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let mut output = 0;
 
@@ -34,7 +36,7 @@ pub fn b () {
         }
     }
 
-    println!("day06 b: {output}");
+    output as i32
 }
 
 // recursive function to check whether all chars in the vector are unique or not

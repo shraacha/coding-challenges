@@ -1,5 +1,9 @@
-pub fn a () {
-    let mut input = include_str!("../inputs/day05.txt").split("\n\n");
+use std::fs;
+
+pub fn a (input_file: &str) -> String {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
+
+    let mut input = input.split("\n\n");
 
     let mut top = input
         .next()
@@ -66,12 +70,13 @@ pub fn a () {
         acc + x.last().unwrap()
     });
 
-    println!("day05 a: {output}");
+    output
 }
 
-pub fn b () {
-    let mut input = include_str!("../inputs/day05.txt").split("\n\n");
+pub fn b (input_file: &str) -> String {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
+    let mut input = input.split("\n\n");
     let mut top = input
         .next()
         .unwrap()
@@ -150,5 +155,5 @@ pub fn b () {
         acc + x.last().unwrap()
     });
 
-    println!("day05 b: {output}");
+    output
 }

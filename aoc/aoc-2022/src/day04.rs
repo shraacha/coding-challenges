@@ -1,5 +1,7 @@
-pub fn a () {
-    let input = include_str!("../inputs/day04.txt");
+use std::fs;
+
+pub fn a (input_file: &str) -> i64 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let output = input
         .split_terminator('\n')
@@ -10,10 +12,10 @@ pub fn a () {
             let mut left = x.next().unwrap().split('-');
             let mut right = x.next().unwrap().split('-');
 
-            let (a, b, x, y) = (left.next().unwrap().parse::<i32>().unwrap(),
-                                left.last().unwrap().parse::<i32>().unwrap(),
-                                right.next().unwrap().parse::<i32>().unwrap(),
-                                right.last().unwrap().parse::<i32>().unwrap());
+            let (a, b, x, y) = (left.next().unwrap().parse::<i64>().unwrap(),
+                                left.last().unwrap().parse::<i64>().unwrap(),
+                                right.next().unwrap().parse::<i64>().unwrap(),
+                                right.last().unwrap().parse::<i64>().unwrap());
 
             // if one range fully contains the other, say A contains B,
             // the left end of A should be <= the left end of B,
@@ -29,11 +31,11 @@ pub fn a () {
             }
         });
 
-    println!("day04 a: {}", output);
+    output
 }
 
-pub fn b () {
-    let input = include_str!("../inputs/day04.txt");
+pub fn b (input_file: &str) -> i64 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let output = input
         .split_terminator('\n')
@@ -44,10 +46,10 @@ pub fn b () {
             let mut left = x.next().unwrap().split('-');
             let mut right = x.next().unwrap().split('-');
 
-            let (a, b, x, y) = (left.next().unwrap().parse::<i32>().unwrap(),
-                                left.last().unwrap().parse::<i32>().unwrap(),
-                                right.next().unwrap().parse::<i32>().unwrap(),
-                                right.last().unwrap().parse::<i32>().unwrap());
+            let (a, b, x, y) = (left.next().unwrap().parse::<i64>().unwrap(),
+                                left.last().unwrap().parse::<i64>().unwrap(),
+                                right.next().unwrap().parse::<i64>().unwrap(),
+                                right.last().unwrap().parse::<i64>().unwrap());
 
             // similar concept as in part a, except we compare the left end of one
             // range with the right end of the other range.
@@ -59,6 +61,5 @@ pub fn b () {
             }
         });
 
-    println!("day04 b: {}", output);
-
+    output
 }

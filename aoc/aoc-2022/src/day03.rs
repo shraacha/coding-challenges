@@ -1,3 +1,5 @@
+use std::fs;
+
 #[inline]
 fn get_letter_val(letter: char) -> u64 {
     match letter {
@@ -7,12 +9,12 @@ fn get_letter_val(letter: char) -> u64 {
     }
 }
 
-pub fn a () {
-    let input = include_str!("../inputs/day03.txt");
+pub fn a (input_file: &str) -> i64 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let output = input
         .split_terminator('\n')
-        .fold(0, |mut acc, x| {
+        .fold(0, |mut acc: i64, x| {
             let sack_size = x.len();                        // getting the length of the line
             let (left, right) = x.split_at(sack_size / 2);  // splitting the line into left and right compartments
 
@@ -31,7 +33,7 @@ pub fn a () {
                 let intersect = left_contents & (0b1u64 << shift); // AND-ing the shifted value for current letter with the u64 above to see if the letter is on the left
 
                 if intersect != 0 {
-                    acc += shift + 1;
+                    acc += (shift + 1) as i64;
                     break;
                 }
             }
@@ -41,14 +43,13 @@ pub fn a () {
             acc
         });
 
-    println!("day03 a: {}", output);
+    output
 }
 
-pub fn b () {
-    let input = include_str!("../inputs/day03.txt");
+pub fn b (input_file: &str) -> i64 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let output = input
-        .to_string()
         .split_terminator('\n')
         .collect::<Vec<_>>()
         .chunks(3)                  // splitting lines into groups of 3
@@ -71,6 +72,5 @@ pub fn b () {
             acc1
         });
 
-    println!("day03 b: {}", output);
+    output as i64
 }
-

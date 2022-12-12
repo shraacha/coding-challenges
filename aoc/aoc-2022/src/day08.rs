@@ -1,5 +1,7 @@
-pub fn a () {
-    let input = include_str!("../inputs/day08.txt");
+use std::fs;
+
+pub fn a (input_file: &str) -> i32 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     // reading in the grid
     let in_grid : Vec<Vec<i32>> = input.split_terminator('\n')
@@ -69,11 +71,11 @@ pub fn a () {
         }
     }
 
-    println!("day08 a: {output}");
+    output
 }
 
-pub fn b () {
-    let input = include_str!("../inputs/day08.txt");
+pub fn b (input_file: &str) -> i32 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     // reading in the grid
     let in_grid : Vec<Vec<i32>> = input.split_terminator('\n')
@@ -88,16 +90,14 @@ pub fn b () {
     let rows = in_grid.get(0).unwrap().len();
 
     let mut output = 0; // scenic score
-    let mut sum = 0;
-    let mut mul = 1;
     // looping through each tree in the grid
     for i in 0..cols {
         for j in 0..rows {
             let curr_tree_height = in_grid[i][j];
-            mul = 1;
+            let mut mul = 1;
 
             // Right
-            sum = 0;
+            let mut sum = 0;
             for x in i..cols {
                 if x != i {
                     sum += 1;
@@ -152,6 +152,5 @@ pub fn b () {
         }
     }
 
-
-    println!("day08 b: {output}");
+    output
 }

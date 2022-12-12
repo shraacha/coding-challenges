@@ -1,9 +1,11 @@
-static A_MOST: i64 = 100000;
-static B_REQ: i64 = 30000000;
-static B_MAX: i64 = 70000000;
+static A_MOST: i32 = 100000;
+static B_REQ: i32 = 30000000;
+static B_MAX: i32 = 70000000;
 
-pub fn a () {
-    let input = include_str!("../inputs/day07.txt");
+use std::fs;
+
+pub fn a (input_file: &str) -> i32 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let mut lines = input.split_terminator('\n').rev().collect::<Vec<&str>>();
     lines.pop();                         // remove "$ cd \" line
@@ -12,10 +14,10 @@ pub fn a () {
 
     find_size_a(&mut lines, &mut output);
 
-    println!("day07 a: {output}");
+    output
 }
 
-fn find_size_a (lines: &mut Vec<&str>, sum: &mut i64) -> i64 {
+fn find_size_a (lines: &mut Vec<&str>, sum: &mut i32) -> i32 {
     let mut size_of_dir = 0;
     lines.pop();                         // remove "$ ls" line
 
@@ -37,7 +39,7 @@ fn find_size_a (lines: &mut Vec<&str>, sum: &mut i64) -> i64 {
             }
         } else if temp.eq("dir") {        // dir, do nothing
         } else {                          // file size
-            size_of_dir += temp.parse::<i64>().unwrap();
+            size_of_dir += temp.parse::<i32>().unwrap();
         }
     }
 
@@ -47,8 +49,8 @@ fn find_size_a (lines: &mut Vec<&str>, sum: &mut i64) -> i64 {
     size_of_dir
 }
 
-pub fn b () {
-    let input = include_str!("../inputs/day07.txt");
+pub fn b (input_file: &str) -> i32 {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let mut lines = input.split_terminator('\n').rev().collect::<Vec<&str>>();
     lines.pop();                         // remove "$ cd \" line
@@ -63,10 +65,10 @@ pub fn b () {
 
     find_size_b(&mut lines, & space_required, &mut output);
 
-    println!("day07 b: {output}");
+    output
 }
 
-fn find_size_b (lines: &mut Vec<&str>, space_required: & i64, dir_to_remove: &mut i64) -> i64 {
+fn find_size_b (lines: &mut Vec<&str>, space_required: & i32, dir_to_remove: &mut i32) -> i32 {
     let mut size_of_dir = 0;
     lines.pop();                         // remove "$ ls" line
 
@@ -88,7 +90,7 @@ fn find_size_b (lines: &mut Vec<&str>, space_required: & i64, dir_to_remove: &mu
             }
         } else if temp.eq("dir") {        // dir, do nothing
         } else {                          // file size
-            size_of_dir += temp.parse::<i64>().unwrap();
+            size_of_dir += temp.parse::<i32>().unwrap();
         }
 
     }
