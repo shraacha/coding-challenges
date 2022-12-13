@@ -90,6 +90,14 @@ pub fn b(input_file: &str) -> usize {
 
                 // If lead exceeds radius of 1 unit from following, must update follower location
                 if (diff.0 as i32).abs() > 1 || (diff.1 as i32).abs() > 1 {
+                    // if lead is 2 units away from the follower in
+                    //  an axis, the follower must move one unit
+                    //  towards the lead in that axis.
+
+                    // if the lead exceeds 2 units of distance from the follower
+                    //  in one axis, there is also a change that they are separated
+                    //  by one unit in the other axis, which is why I add the
+                    //  diff if |diff| neq 2 in that dir.
                     if (diff.0 as i32).abs() == 2 {
                         j.0 += diff.0 / 2;
                     } else {
