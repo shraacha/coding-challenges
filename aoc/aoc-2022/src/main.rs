@@ -8,6 +8,7 @@ mod day05;
 mod day06;
 mod day07;
 mod day08;
+mod day09;
 
 fn main() {
     //println!("day01 a: {}", day01::a("./inputs/day01.txt"));
@@ -33,6 +34,9 @@ fn main() {
 
     //println!("day08 a: {}", day08::a("./inputs/day08.txt"));
     //println!("day08 b: {}", day08::b("./inputs/day08.txt"));
+
+    //println!("day09 a: {}", day09::a("./inputs/day09.txt"));
+    //println!("day09 b: {}", day09::b("./inputs/day09.txt"));
 }
 
 #[cfg(test)]
@@ -101,5 +105,14 @@ mod tests {
         assert_eq!(1789, day08::a("./inputs/day08.txt"));
         assert_eq!(8, day08::b("./inputs/day08_ex.txt"));
         assert_eq!(314820, day08::b("./inputs/day08.txt"));
+    }
+
+    #[test]
+    fn day09_tests() {
+        assert_eq!(13usize, day09::a("./inputs/day09_ex.txt"));
+        assert_eq!(5878usize, day09::a("./inputs/day09.txt"));
+        assert_eq!(1usize, day09::b("./inputs/day09_ex.txt"));
+        assert_eq!(36usize, day09::b("./inputs/day09_ex2.txt"));
+        assert_eq!(2405usize, day09::b("./inputs/day09.txt"));
     }
 }

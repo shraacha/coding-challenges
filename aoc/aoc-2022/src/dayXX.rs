@@ -1,15 +1,17 @@
-pub fn a () {
-    let input = include_str!("../inputs/dayXX.txt");
+use std::fs;
+
+pub fn a(input_file: &str) -> OUTTYPE{
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let output = 0;
 
-    println!("dayXX a: {output}");
+    output
 }
 
-pub fn b () {
-    let input = include_str!("../inputs/dayXX.txt");
+pub fn b(input_file: &str) -> OUTTYPE {
+    let input = fs::read_to_string(input_file).expect("Unable to read file.");
 
     let output = 0;
 
-    println!("dayXX b: {output}");
+    output
 }
