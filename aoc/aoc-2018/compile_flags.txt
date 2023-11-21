@@ -1,0 +1,2 @@
+-std=c11
+-I/Users/anish/Local_Documents/Github/coding-challenges/aoc/aoc-2018/include/
