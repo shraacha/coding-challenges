@@ -31,13 +31,13 @@ struct dictNode* newDictNode();
  * - -1: error
  * -  0: otherwise
  */
-int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter);
+int addChildDictNode(struct dictNode* const parent, struct dictNode* child, const char letter);
 
 /* addWordToDict
  *
  * desc:
  */
-int addWordToDict(struct dictNode* parent, const char* word, const size_t len);
+int addWordToDict(struct dictNode* const parent, const char* word, const size_t len);
 
 /* isWordInDictOneWildcard
  *
@@ -50,9 +50,9 @@ int addWordToDict(struct dictNode* parent, const char* word, const size_t len);
  * else:
  *   - -1
  */
-int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len);
+int isWordInDictOneWildcard(struct dictNode* const parent, const char* word, const size_t len);
 
-int isWordInDict(struct dictNode* parent, const char* word, const size_t len);
+int isWordInDict(struct dictNode* const parent, const char* word, const size_t len);
 
 int deleteDictNode(struct dictNode* node);
 

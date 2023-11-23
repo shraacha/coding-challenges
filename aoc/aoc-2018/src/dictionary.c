@@ -1,5 +1,6 @@
 #include "dictionary.h"
 #include "constants.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 struct dictNode *newDictNode() {
@@ -16,7 +17,7 @@ struct dictNode *newDictNode() {
     return NULL;
 }
 
-int addChildDictNode(struct dictNode *parent, struct dictNode *child,
+int addChildDictNode(struct dictNode* const parent, struct dictNode *child,
                      const char letter) {
     int index = letter - MYLOWERAOFFSET;
 
@@ -30,7 +31,7 @@ int addChildDictNode(struct dictNode *parent, struct dictNode *child,
     }
 }
 
-int addWordToDict(struct dictNode* parent, const char* word, const size_t len) {
+int addWordToDict(struct dictNode* const parent, const char* word, const size_t len) {
     struct dictNode* currNode = parent;
 
     for (int i = 0; i < len; i++) {
@@ -45,7 +46,7 @@ int addWordToDict(struct dictNode* parent, const char* word, const size_t len) {
     return 1;
 }
 
-int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len) {
+int isWordInDictOneWildcard(struct dictNode* const parent, const char* word, const size_t len) {
     // Check first letter against current node.
     // If it exists, descend to the corresponding child.
     // If it does not exist,
@@ -77,7 +78,7 @@ int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const siz
     return -1;
 }
 
-int isWordInDict(struct dictNode* parent, const char* word, const size_t len) {
+int isWordInDict(struct dictNode* const parent, const char* word, const size_t len) {
     struct dictNode* currNode = parent;
 
     for (int i = 0; i < len; i++) {
@@ -94,6 +95,7 @@ int isWordInDict(struct dictNode* parent, const char* word, const size_t len) {
 int deleteDictNode(struct dictNode* node) {
     struct dictNode* currNode = NULL;
 
+    printf("delete test");
     // recursively delete children
     for(int i = 0; i < ALPHACOUNT; i++) {
         if((currNode = node->children[i]) != NULL) {
