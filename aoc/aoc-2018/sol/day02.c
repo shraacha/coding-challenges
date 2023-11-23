@@ -69,7 +69,9 @@ int main(int argc, char *argv[]) {
       }
     }
 
+
     printf("P12 ID, diff char: %s, %c\n", currWord, (char) result + MYLOWERAOFFSET);
 
+    deleteDictNode(dictionary);
     return 0;
 }
