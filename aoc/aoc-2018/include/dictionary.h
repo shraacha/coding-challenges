@@ -31,8 +31,13 @@ struct dictNode* newDictNode();
  * - -1: error
  * -  0: otherwise
  */
-int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter, const size_t len);
+int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter);
 
+/* addWordToDict
+ *
+ * desc:
+ */
+int addWordToDict(struct dictNode* parent, const char* word, const size_t len);
 
 /* isWordInDictOneWildcard
  *

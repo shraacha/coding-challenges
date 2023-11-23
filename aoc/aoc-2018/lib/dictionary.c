@@ -29,9 +29,22 @@ int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char
     }
 }
 
-int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len) {
-    // TODO
+int addWordToDict(struct dictNode* parent, const char* word, const size_t len) {
+    struct dictNode* currNode = parent;
 
+    for (int i = 0; i < len; i++) {
+        // regular word search in trie
+        if(currNode->children[word[i]] == NULL) {
+            addChildDictNode(currNode, newDictNode(), word[i]);
+        }
+
+        currNode = currNode->children[word[i]];
+    }
+
+    return 1;
+}
+
+int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len) {
     // Check first letter against current node.
     // If it exists, descend to the corresponding child.
     // If it does not exist,
@@ -45,15 +58,20 @@ int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const siz
         if(currNode->children[word[i]] != NULL) {
             currNode = currNode->children[word[i]];
         } else {
-            // once we find a difference, we do regualar word search on every other child
+            // Once we find a difference, we do regualar word search for
+            //   the remaining portion of the word on every other child.
+            // If we cannot find tail of the word in any of the children,
+            //   there's more than 1 different character.
             for (int j = 0; j < ALPHACOUNT; j++) {
-                if(currNode->children[j] != NULL && isWordInDict(currNode->children[j], &(word[i]),)) {
-
+                if(currNode->children[j] != NULL && isWordInDict(currNode->children[j], &(word[i + 1]), len - i + 1)) {
+                    return 1;
                 }
             }
             return 0;
         }
     }
+
+    return -1;
 }
 
 int isWordInDict(struct dictNode* parent, const char* word, const size_t len) {
