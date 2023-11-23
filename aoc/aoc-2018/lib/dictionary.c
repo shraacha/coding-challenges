@@ -1,6 +1,7 @@
 #include "dictionary.h"
 #include "constants.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 struct dictNode *newDictNode() {
     struct dictNode *node = malloc(sizeof(struct dictNode));
@@ -91,6 +92,7 @@ int isWordInDict(struct dictNode* parent, const char* word, const size_t len) {
 int deleteDictNode(struct dictNode* node) {
     struct dictNode* currNode = NULL;
 
+    printf("delete test");
     // recursively delete children
     for(int i = 0; i < ALPHACOUNT; i++) {
         if((currNode = node->children[i]) != NULL) {
