@@ -44,6 +44,11 @@ int addWordToDict(struct dictNode* parent, const char* word, const size_t len);
  * desc:
  * Checks if the word is in the dictionary with one wildcard letter.
  *
+ * return value: int
+ * if 1 wildcard:
+ *   - first wildcard letter - 97,
+ * else:
+ *   - -1
  */
 int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len);
 

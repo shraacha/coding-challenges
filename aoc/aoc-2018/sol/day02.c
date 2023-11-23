@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include "constants.h"
+#include "dictionary.h"
 
-#define MYINPUTLOC              "input/day02_in.txt"
+#define MYINPUTLOC              "../input/day02_in.txt"
 
 int main(int argc, char *argv[]) {
     // input
@@ -22,10 +23,8 @@ int main(int argc, char *argv[]) {
     int appearsThrice;
     int totalAppearsTwice = 0;
     int totalAppearsThrice = 0;
-    int wordCount = 0;
 
     while (fscanf(input, "%s", currWord) > 0) {
-      wordCount++;
       appearsTwice = 0;
       appearsThrice = 0;
 
@@ -55,11 +54,22 @@ int main(int argc, char *argv[]) {
     printf("P1 total: %d\n", totalAppearsTwice * totalAppearsThrice);
 
     // part 2
-    // naive O(n^2)
+    // using a dictionary
+    struct dictNode* dictionary = newDictNode();
+    int result;
 
     while (fscanf(input, "%s", currWord) > 0) {
+      size_t len = strlen(currWord);
 
+      result = isWordInDictOneWildcard(dictionary, currWord, len);
+      if (result >= 0) {
+        break;
+      } else {
+        addWordToDict(dictionary, currWord, len);
+      }
     }
+
+    printf("P12 ID, diff char: %s, %c\n", currWord, (char) result + MYLOWERAOFFSET);
 
     return 0;
 }

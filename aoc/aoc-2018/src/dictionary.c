@@ -16,7 +16,8 @@ struct dictNode *newDictNode() {
     return NULL;
 }
 
-int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter) {
+int addChildDictNode(struct dictNode *parent, struct dictNode *child,
+                     const char letter) {
     int index = letter - MYLOWERAOFFSET;
 
     if (parent->children[index] != NULL) {
@@ -34,8 +35,8 @@ int addWordToDict(struct dictNode* parent, const char* word, const size_t len) {
 
     for (int i = 0; i < len; i++) {
         // regular word search in trie
-        if(currNode->children[word[i] - MYLOWERAOFFSET] == NULL) {
-            addChildDictNode(currNode, newDictNode(), word[i]);
+        if (currNode->children[word[i] - MYLOWERAOFFSET] == NULL) {
+          addChildDictNode(currNode, newDictNode(), word[i]);
         }
 
         currNode = currNode->children[word[i] - MYLOWERAOFFSET];
@@ -55,19 +56,21 @@ int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const siz
 
     for (int i = 0; i < len; i++) {
         // regular word search in trie
-        if(currNode->children[word[i] - MYLOWERAOFFSET] != NULL) {
-            currNode = currNode->children[word[i] - MYLOWERAOFFSET];
+        if (currNode->children[word[i] - MYLOWERAOFFSET] != NULL) {
+          currNode = currNode->children[word[i] - MYLOWERAOFFSET];
         } else {
-            // Once we find a difference, we do regualar word search for
-            //   the remaining portion of the word on every other child.
-            // If we cannot find tail of the word in any of the children,
-            //   there's more than 1 different character.
-            for (int j = 0; j < ALPHACOUNT; j++) {
-                if(currNode->children[j] != NULL && isWordInDict(currNode->children[j], &(word[i + 1]), len - i + 1)) {
-                    return 1;
-                }
+          // Once we find a difference, we do regualar word search for
+          //   the remaining portion of the word on every other child.
+          // If we cannot find tail of the word in any of the children,
+          //   there's more than 1 different character.
+          for (int j = 0; j < ALPHACOUNT; j++) {
+            if (currNode->children[j] != NULL &&
+                isWordInDict(currNode->children[j], &(word[i + 1]),
+                             len - i + 1)) {
+              return j;
             }
-            return 0;
+          }
+          return -1;
         }
     }
 
