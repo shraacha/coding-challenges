@@ -29,7 +29,7 @@ int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char
     }
 }
 
-int isWordInDictOneWildcard(struct dictNode* parent,const char* word) {
+int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len) {
     // TODO
 
     // Check first letter against current node.
@@ -38,10 +38,36 @@ int isWordInDictOneWildcard(struct dictNode* parent,const char* word) {
     //   If this is the first non-existant letter,
     //     we descend on all other existing children and search as normal.
     //   Else, we return back.
+    struct dictNode* currNode = parent;
+
+    for (int i = 0; i < len; i++) {
+        // regular word search in trie
+        if(currNode->children[word[i]] != NULL) {
+            currNode = currNode->children[word[i]];
+        } else {
+            // once we find a difference, we do regualar word search on every other child
+            for (int j = 0; j < ALPHACOUNT; j++) {
+                if(currNode->children[j] != NULL && isWordInDict(currNode->children[j], &(word[i]),)) {
+
+                }
+            }
+            return 0;
+        }
+    }
 }
 
-int isWordInDict(struct dictNode* parent, const char* word) {
+int isWordInDict(struct dictNode* parent, const char* word, const size_t len) {
+    struct dictNode* currNode = parent;
 
+    for (int i = 0; i < len; i++) {
+        if(currNode->children[word[i]] != NULL) {
+            currNode = currNode->children[word[i]];
+        } else {
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 int deleteDictNode(struct dictNode* node) {

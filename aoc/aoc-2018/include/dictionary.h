@@ -2,6 +2,7 @@
 #define DICTIONARY_H
 
 #include "constants.h"
+#include <stdlib.h>
 
 #define ISLEAF         1
 #define ISNOTLEAF      0
@@ -30,7 +31,7 @@ struct dictNode* newDictNode();
  * - -1: error
  * -  0: otherwise
  */
-int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter);
+int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter, const size_t len);
 
 
 /* isWordInDictOneWildcard
@@ -39,9 +40,9 @@ int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char
  * Checks if the word is in the dictionary with one wildcard letter.
  *
  */
-int isWordInDictOneWildcard(struct dictNode* parent, const char* word);
+int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len);
 
-int isWordInDict(struct dictNode* parent, const char* word);
+int isWordInDict(struct dictNode* parent, const char* word, const size_t len);
 
 int deleteDictNode(struct dictNode* node);
 
