@@ -6,6 +6,7 @@ ODIR=obj
 LDIR =../src
 LIBDIR =../lib
 SOLDIR =../sol
+TESTDIR =../test
 
 LIBS=
 
@@ -24,6 +25,9 @@ $(ODIR)/%.o: $(LIBDIR)/%.c $(DEPS)
 
 day02: $(OBJ)
 	$(CC) -o $@ $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+
+dictionary_test01: $(OBJ)
+	$(CC) -o $@ $(TESTDIR)/$@.c $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 

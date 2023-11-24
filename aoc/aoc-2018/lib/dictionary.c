@@ -30,7 +30,7 @@ int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char
     }
 }
 
-int addWordToDict(struct dictNode* parent, const char* word, const size_t len) {
+int addWordToDict(struct dictNode* parent, const char* word, const int len) {
     struct dictNode* currNode = parent;
 
     for (int i = 0; i < len; i++) {
@@ -45,7 +45,7 @@ int addWordToDict(struct dictNode* parent, const char* word, const size_t len) {
     return 1;
 }
 
-int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const size_t len) {
+int indexOfSingleWildcardChar(struct dictNode* parent, const char* word, const int len) {
     // Check first letter against current node.
     // If it exists, descend to the corresponding child.
     // If it does not exist,
@@ -63,19 +63,22 @@ int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const siz
             //   the remaining portion of the word on every other child.
             // If we cannot find tail of the word in any of the children,
             //   there's more than 1 different character.
+
             for (int j = 0; j < ALPHACOUNT; j++) {
-                if(currNode->children[j] != NULL && isWordInDict(currNode->children[j], &(word[i + 1]), len - i + 1)) {
-                    return j; // return the index of the letter
-                }
+              if (currNode->children[j] != NULL &&
+                  isWordInDict(currNode->children[j], &(word[i + 1]),
+                               len - (i + 1))) {
+                return i; // return the index of the letter in the word
+              }
             }
-            return -1;
+            return -1; // if we do not match with any trailing pattern
         }
     }
 
-    return -1;
+    return -2;
 }
 
-int isWordInDict(struct dictNode* parent, const char* word, const size_t len) {
+int isWordInDict(struct dictNode* parent, const char* word, const int len) {
     struct dictNode* currNode = parent;
 
     for (int i = 0; i < len; i++) {

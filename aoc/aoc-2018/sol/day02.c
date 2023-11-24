@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
         // if this is the first word, we just add to the dictionary
         addWordToDict(dictionary, currWord, len);
       } else {
-        result = isWordInDictOneWildcard(dictionary, currWord, len);
+        result = indexOfSingleWildcardChar(dictionary, currWord, len);
         if (result >= 0) {
           break;
         } else {
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    printf("P12 ID, diff char: %s, %c\n", currWord, result + MYLOWERAOFFSET);
+    printf("P12 ID, char index: %s, %d\n", currWord, result);
 
     deleteDictNode(dictionary);
     return 0;
