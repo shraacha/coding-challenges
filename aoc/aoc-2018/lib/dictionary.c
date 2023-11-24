@@ -89,18 +89,23 @@ int isWordInDict(struct dictNode* parent, const char* word, const size_t len) {
     return 1;
 }
 
-int deleteDictNode(struct dictNode* node) {
+int deleteChildren(struct dictNode* node) {
     struct dictNode* currNode = NULL;
 
-    printf("delete test");
     // recursively delete children
     for(int i = 0; i < ALPHACOUNT; i++) {
         if((currNode = node->children[i]) != NULL) {
-            deleteDictNode(currNode); // delete subtries first
-            free(node->children[i]);        // delete the child
+            deleteChildren(currNode);   // delete subtries first
+            free(node->children[i]);     // delete the child
         }
     }
 
+    return 0;
+}
+
+int deleteDictNode(struct dictNode* node) {
+    deleteChildren(node);   // delete children
+    free(node);             // delete itself
 
     return 0;
 }
