@@ -65,10 +65,10 @@ int isWordInDictOneWildcard(struct dictNode* parent, const char* word, const siz
             //   there's more than 1 different character.
             for (int j = 0; j < ALPHACOUNT; j++) {
                 if(currNode->children[j] != NULL && isWordInDict(currNode->children[j], &(word[i + 1]), len - i + 1)) {
-                    return 1;
+                    return j; // return the index of the letter
                 }
             }
-            return 0;
+            return -1;
         }
     }
 
