@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 struct dictNode *newDictNode() {
-    struct dictNode *node = malloc(sizeof(struct dictNode));
+    struct dictNode* node = malloc(sizeof(struct dictNode));
 
     // clear children pointers
     for (int i = 0; i < ALPHACOUNT; i++) {
@@ -14,7 +14,7 @@ struct dictNode *newDictNode() {
     // node has no children to begin with, set to be ISLEAF
     node->isLeaf = ISLEAF;
 
-    return NULL;
+    return node;
 }
 
 int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter) {

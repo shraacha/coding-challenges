@@ -57,18 +57,25 @@ int main(int argc, char *argv[]) {
     // using a dictionary
     struct dictNode* dictionary = newDictNode();
     int result;
+    int wordCount = 0;
 
+
+    rewind(input); // rewinding the input
     while (fscanf(input, "%s", currWord) > 0) {
       size_t len = strlen(currWord);
 
-      result = isWordInDictOneWildcard(dictionary, currWord, len);
-      if (result >= 0) {
-        break;
-      } else {
+      if (++wordCount == 1) {
+        // if this is the first word, we just add to the dictionary
         addWordToDict(dictionary, currWord, len);
+      } else {
+        result = isWordInDictOneWildcard(dictionary, currWord, len);
+        if (result >= 0) {
+          break;
+        } else {
+          addWordToDict(dictionary, currWord, len);
+        }
       }
     }
-
 
     printf("P12 ID, diff char: %s, %c\n", currWord, (char) result + MYLOWERAOFFSET);
 
