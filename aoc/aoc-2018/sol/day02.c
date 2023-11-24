@@ -80,5 +80,6 @@ int main(int argc, char *argv[]) {
     printf("P12 ID, char index: %s, %d\n", currWord, result);
 
     deleteDictNode(dictionary);
+    fclose(input);
     return 0;
 }
