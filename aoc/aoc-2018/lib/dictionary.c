@@ -96,12 +96,11 @@ int deleteDictNode(struct dictNode* node) {
     // recursively delete children
     for(int i = 0; i < ALPHACOUNT; i++) {
         if((currNode = node->children[i]) != NULL) {
-            deleteDictNode(currNode);
+            deleteDictNode(currNode); // delete subtries first
+            free(node->children[i]);        // delete the child
         }
     }
 
-    // delete the data in this node
-    free(node->children);
 
     return 0;
 }
