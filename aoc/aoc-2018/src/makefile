@@ -13,7 +13,7 @@ LIBS=
 _DEPS = dictionary.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = dictionary.o
+_OBJ = dictionary.o intMatrix2D.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _SOL = day01.o
@@ -27,6 +27,9 @@ day02: $(OBJ)
 	$(CC) -o $@ $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
 
 dictionary_test01: $(OBJ)
+	$(CC) -o $@ $(TESTDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+
+intMatrix2D_test01: $(OBJ)
 	$(CC) -o $@ $(TESTDIR)/$@.c $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean

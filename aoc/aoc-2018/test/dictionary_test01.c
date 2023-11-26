@@ -14,6 +14,7 @@ int main() {
 
     printf("Regular search test: %d\n", result);
 
+
     // testing wildcard search
     result = indexOfSingleWildcardChar(dictionary, word2, 4);
 

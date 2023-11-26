@@ -1,13 +1,16 @@
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 
-#include "constants.h"
 #include <stdlib.h>
+
+#include "constants.h"
 
 #define ISLEAF         1
 #define ISNOTLEAF      0
 
 // struct for a dictionary implementation as a trie
+// *Note* this dictionary impl currently only works for
+//   words of the same length.
 struct dictNode {
     int isLeaf;
     struct dictNode* children[ALPHACOUNT];
@@ -15,6 +18,8 @@ struct dictNode {
 
 
 struct dictNode* newDictNode();
+
+int deleteDictNode(struct dictNode *node);
 
 /* addChildDictNode
  *
@@ -41,6 +46,9 @@ int addChildDictNode(struct dictNode *const parent, struct dictNode *child,
 int addWordToDict(struct dictNode *const parent, const char *word,
                   const int len);
 
+int isWordInDict(struct dictNode *const parent, const char *word,
+                 const int len);
+
 /* indexOfSingleWildcardChar
  *
  * desc:
@@ -57,10 +65,5 @@ int addWordToDict(struct dictNode *const parent, const char *word,
  */
 int indexOfSingleWildcardChar(struct dictNode *const parent, const char *word,
                             const int len);
-
-int isWordInDict(struct dictNode *const parent, const char *word,
-                 const int len);
-
-int deleteDictNode(struct dictNode *node);
 
 #endif
