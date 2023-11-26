@@ -23,7 +23,7 @@ SOL = $(patsubst %,$(ODIR)/%,$(_OBJ))
 $(ODIR)/%.o: $(LIBDIR)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-day02: $(OBJ)
+day03: $(OBJ)
 	$(CC) -o $@ $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
 
 dictionary_test01: $(OBJ)
