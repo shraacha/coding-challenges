@@ -21,8 +21,10 @@ int main() {
     int x, y, width, height;
     char* token;
 
+    // TODO init matrix
+
     // p1
-    while (fscanf(input, "%s", currWord) > 0) {
+    while (fgets(currWord, 32, input) != NULL) {
         // tokenizing the input
         // id & '@'
         token = strtok(currWord, " \n\r");
@@ -44,13 +46,18 @@ int main() {
 
         // getting size data
         // getting corner data
-        token = strtok(size, ",");
+        token = strtok(size, "x");
         width = atoi(token);
-        token = strtok(NULL, ",");
+        token = strtok(NULL, "");
         height = atoi(token);
 
-        printf("x = %d, y = %d, width = %d, height = %d\n", x, y, width, height);
+        /* printf("x = %d, y = %d, width = %d, height = %d\n", x, y, width, height); //testing */
+
+
+        // TODO Add to the matrix
     }
+
+    // TODO check for cover
 
     // p2
 

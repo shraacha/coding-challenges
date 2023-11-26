@@ -41,6 +41,7 @@ int deleteIntMatrix2D (struct IntMatrix2D* matrix) {
 }
 
 int growIntMatrix2D (struct IntMatrix2D** matrix, size_t newRows, size_t newCols) {
+    // TODO use reolloc instead of creating a new matrix
     struct IntMatrix2D* newMatrix = newIntMatrix2D(newRows, newCols);
 
     for(size_t i = 0; i < (*matrix)->rows && i < newMatrix->rows ; i++) {
