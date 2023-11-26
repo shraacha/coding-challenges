@@ -17,6 +17,6 @@ int deleteIntMatrix2D (struct IntMatrix2D* matrix);
 /*
  * - grow matrix1 contents to size of rows x cols
  */
-int growIntMatrix2D (struct IntMatrix2D* matrix, size_t newRows, size_t newCols);
+int growIntMatrix2D (struct IntMatrix2D** matrix, size_t newRows, size_t newCols);
 
 #endif

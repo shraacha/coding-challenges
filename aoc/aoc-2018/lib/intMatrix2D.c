@@ -40,20 +40,20 @@ int deleteIntMatrix2D (struct IntMatrix2D* matrix) {
     return 0;
 }
 
-int growIntMatrix2D (struct IntMatrix2D* matrix, size_t newRows, size_t newCols) {
+int growIntMatrix2D (struct IntMatrix2D** matrix, size_t newRows, size_t newCols) {
     struct IntMatrix2D* newMatrix = newIntMatrix2D(newRows, newCols);
 
-    for(size_t i = 0; i < matrix->rows && i < newMatrix->rows ; i++) {
+    for(size_t i = 0; i < (*matrix)->rows && i < newMatrix->rows ; i++) {
         // looping through the rows
-        for(size_t j = 0; j < matrix->cols && j < newMatrix->cols; j++) {
+        for(size_t j = 0; j < (*matrix)->cols && j < newMatrix->cols; j++) {
             // looping through the col indeces
 
             // copy values
-            newMatrix->elements[i][j] = matrix->elements[i][j];
+            newMatrix->elements[i][j] = (*matrix)->elements[i][j];
         }
     }
 
-    deleteIntMatrix2D(matrix);
-    matrix = newMatrix;
+    deleteIntMatrix2D(*matrix);
+    *matrix = newMatrix;
     return 0;
 }
