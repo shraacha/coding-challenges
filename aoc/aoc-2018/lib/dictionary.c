@@ -11,41 +11,69 @@ struct dictNode *newDictNode() {
         node->children[i] = NULL;
     }
 
-    // node has no children to begin with, set to be ISLEAF
-    node->isLeaf = ISLEAF;
+    // node has no children to begin with, set to be DOESNOTHOLDVALUE
+    node->status = DOESNOTHOLDVALUE;
 
     return node;
 }
 
-int addChildDictNode(struct dictNode* parent, struct dictNode* child, const char letter) {
-    int index = letter - MYLOWERAOFFSET;
+int addChildDictNode(struct dictNode *parent, struct dictNode *child,
+                     const char letter, const int offset) {
+    int index = letter - offset;
 
     if (parent->children[index] != NULL) {
         // error, child already exists
         return -1;
     } else {
         parent->children[index] = child;
-        parent->isLeaf = ISNOTLEAF;
         return 0;
     }
 }
 
-int addWordToDict(struct dictNode* parent, const char* word, const int len) {
-    struct dictNode* currNode = parent;
+int addWordToDict(struct dictNode *parent, const char *word, const int len,
+                  const int offset) {
+    struct dictNode *currNode = parent;
 
     for (int i = 0; i < len; i++) {
         // regular word search in trie
-        if(currNode->children[word[i] - MYLOWERAOFFSET] == NULL) {
-            addChildDictNode(currNode, newDictNode(), word[i]);
+        if(currNode->children[word[i] - offset] == NULL) {
+            addChildDictNode(currNode, newDictNode(), word[i], offset);
         }
 
-        currNode = currNode->children[word[i] - MYLOWERAOFFSET];
+        currNode = currNode->children[word[i] - offset];
     }
 
+    // once we have traversed to the end of the word, we set the node's status
+    //   to "HOLDSVALUE"
+    currNode->status = HOLDSVALUE;
     return 1;
 }
 
-int indexOfSingleWildcardChar(struct dictNode* parent, const char* word, const int len) {
+int isWordInDict(struct dictNode *parent, const char *word,
+                 const int len, const int offset) {
+    struct dictNode *currNode = parent;
+
+    for (int i = 0; i < len; i++) {
+        // checking if the next letter exists as a child
+        if(currNode->children[word[i] - offset] != NULL) {
+            currNode = currNode->children[word[i] - offset];
+        } else {
+            // if not then the word does not exist in the trie
+            return 0;
+        }
+    }
+
+    // if we have reached to the end of the word, we check if
+    //   it holds a value
+    if (currNode->status == HOLDSVALUE) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int indexOfSingleWildcardChar(struct dictNode *parent, const char *word,
+                              const int len, const int offset) {
     // Check first letter against current node.
     // If it exists, descend to the corresponding child.
     // If it does not exist,
@@ -56,8 +84,8 @@ int indexOfSingleWildcardChar(struct dictNode* parent, const char* word, const i
 
     for (int i = 0; i < len; i++) {
         // regular word search in trie
-        if(currNode->children[word[i] - MYLOWERAOFFSET] != NULL) {
-            currNode = currNode->children[word[i] - MYLOWERAOFFSET];
+        if(currNode->children[word[i] - offset] != NULL) {
+            currNode = currNode->children[word[i] - offset];
         } else {
             // Once we find a difference, we do regualar word search for
             //   the remaining portion of the word on every other child.
@@ -67,7 +95,7 @@ int indexOfSingleWildcardChar(struct dictNode* parent, const char* word, const i
             for (int j = 0; j < ALPHACOUNT; j++) {
               if (currNode->children[j] != NULL &&
                   isWordInDict(currNode->children[j], &(word[i + 1]),
-                               len - (i + 1))) {
+                               len - (i + 1), offset)) {
                 return i; // return the index of the letter in the word
               }
             }
@@ -76,20 +104,6 @@ int indexOfSingleWildcardChar(struct dictNode* parent, const char* word, const i
     }
 
     return -2;
-}
-
-int isWordInDict(struct dictNode* parent, const char* word, const int len) {
-    struct dictNode* currNode = parent;
-
-    for (int i = 0; i < len; i++) {
-        if(currNode->children[word[i] - MYLOWERAOFFSET] != NULL) {
-            currNode = currNode->children[word[i] - MYLOWERAOFFSET];
-        } else {
-            return 0;
-        }
-    }
-
-    return 1;
 }
 
 int deleteChildren(struct dictNode* node) {

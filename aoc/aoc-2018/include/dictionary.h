@@ -5,14 +5,17 @@
 
 #include "constants.h"
 
-#define ISLEAF         1
-#define ISNOTLEAF      0
+#define HOLDSVALUE            1
+#define DOESNOTHOLDVALUE      0
+
+// TODO: add offset to the struct
 
 // struct for a dictionary implementation as a trie
 // *Note* this dictionary impl currently only works for
 //   words of the same length.
+// Currently only has 26 children (designed primarily for an english word trie) per node.
 struct dictNode {
-    int isLeaf;
+    int status;   // status of the node (holds a value/doesn't hold a value);
     struct dictNode* children[ALPHACOUNT];
 };
 
@@ -30,6 +33,7 @@ int deleteDictNode(struct dictNode *node);
  * - parent node
  * - child node
  * - the letter to add the child at
+ * - offset to subtract the letter by before adding to the dict
  *
  * return value:
  * int:
@@ -37,17 +41,17 @@ int deleteDictNode(struct dictNode *node);
  * -  0: otherwise
  */
 int addChildDictNode(struct dictNode *const parent, struct dictNode *child,
-                     const char letter);
+                     const char letter, const int offset);
 
 /* addWordToDict
  *
  * desc:
  */
 int addWordToDict(struct dictNode *const parent, const char *word,
-                  const int len);
+                  const int len, const int offset);
 
 int isWordInDict(struct dictNode *const parent, const char *word,
-                 const int len);
+                 const int len, const int offset);
 
 /* indexOfSingleWildcardChar
  *
@@ -64,6 +68,6 @@ int isWordInDict(struct dictNode *const parent, const char *word,
  *   - -2
  */
 int indexOfSingleWildcardChar(struct dictNode *const parent, const char *word,
-                            const int len);
+                            const int len, const int offset);
 
 #endif

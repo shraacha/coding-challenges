@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MYINPUTLOC              "../input/day03_in.txt"
+#define MYINPUTLOC              "../input/day03_test1.txt"
 
 int main() {
     // input
@@ -16,20 +16,23 @@ int main() {
     }
 
 
+    // p1
     char currWord[32];
     char corner[32];
     char size[32];
-    int x, y, width, height;
     char* token;
+    int id;
+    int x, y, width, height;
+    int twoOrMoreClaims = 0;
 
-    // TODO init matrix
-    struct IntMatrix2D* matrix = newIntMatrix2D(10, 10);
+    struct IntMatrix2D* claimCountMatrix = newIntMatrix2D(2, 2);
+    struct IntMatrix2D* originalIDMatrix = newIntMatrix2D(2, 2);
 
-    // p1
     while (fgets(currWord, 32, input) != NULL) {
         // tokenizing the input
         // id & '@'
         token = strtok(currWord, " \n\r");
+
         token = strtok(NULL, " \n\r");
 
         // top left corner
@@ -57,30 +60,33 @@ int main() {
 
         for(int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (y + i > matrix->rows || x + j > matrix->cols) {
-                    growIntMatrix2D(&matrix, matrix->rows * 2, matrix->cols * 2);
+                // grow matrix until it is large enough
+                while (y + i > claimCountMatrix->rows || x + j > claimCountMatrix->cols) {
+                    growIntMatrix2D(&claimCountMatrix, claimCountMatrix->rows * 2, claimCountMatrix->cols * 2);
                 }
 
-                (matrix->elements)[y + i][x + j]++;
+                // increment value in the matrix
+                (claimCountMatrix->elements)[y + i][x + j]++;
                 /* printf("*TEST* (%d, %d) = %d\n", x + j, y + i, (matrix->elements)[y + i][x + j]); //testing */
             }
         }
     }
 
-    // TODO check for cover
-    int twoOrMoreClaims = 0;
-    for (int i = 0; i < matrix->rows; i++) {
-        for (int j = 0; j < matrix->cols; j++) {
-            if ((matrix->elements)[i][j] >= 2) {
+    // check for cover
+    for (int i = 0; i < claimCountMatrix->rows; i++) {
+        for (int j = 0; j < claimCountMatrix->cols; j++) {
+            if ((claimCountMatrix->elements)[i][j] >= 2) {
                 twoOrMoreClaims++;
             }
         }
     }
+
     printf("P1: %d\n", twoOrMoreClaims);
 
     // p2
 
-    deleteIntMatrix2D(matrix);
+    // cleanup
+    deleteIntMatrix2D(claimCountMatrix);
     fclose(input);
     return 0;
 }

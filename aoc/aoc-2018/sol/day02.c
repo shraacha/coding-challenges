@@ -5,6 +5,8 @@
 
 #define MYINPUTLOC              "../input/day02_in.txt"
 
+// TODO: fix dictionary calls
+
 int main(int argc, char *argv[]) {
     // input
     FILE * input = fopen(MYINPUTLOC, "r");
