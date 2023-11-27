@@ -1,8 +1,9 @@
+#include "intMatrix2D.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define MYINPUTLOC              "../input/day03_test1.txt"
+#define MYINPUTLOC              "../input/day03_in.txt"
 
 int main() {
     // input
@@ -22,6 +23,7 @@ int main() {
     char* token;
 
     // TODO init matrix
+    struct IntMatrix2D* matrix = newIntMatrix2D(10, 10);
 
     // p1
     while (fgets(currWord, 32, input) != NULL) {
@@ -51,16 +53,34 @@ int main() {
         token = strtok(NULL, "");
         height = atoi(token);
 
-        /* printf("x = %d, y = %d, width = %d, height = %d\n", x, y, width, height); //testing */
+        /* printf("*TEST* x = %d, y = %d, width = %d, height = %d\n", x, y, width, height); //testing */
 
+        for(int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (y + i > matrix->rows || x + j > matrix->cols) {
+                    growIntMatrix2D(&matrix, matrix->rows * 2, matrix->cols * 2);
+                }
 
-        // TODO Add to the matrix
+                (matrix->elements)[y + i][x + j]++;
+                /* printf("*TEST* (%d, %d) = %d\n", x + j, y + i, (matrix->elements)[y + i][x + j]); //testing */
+            }
+        }
     }
 
     // TODO check for cover
+    int twoOrMoreClaims = 0;
+    for (int i = 0; i < matrix->rows; i++) {
+        for (int j = 0; j < matrix->cols; j++) {
+            if ((matrix->elements)[i][j] >= 2) {
+                twoOrMoreClaims++;
+            }
+        }
+    }
+    printf("P1: %d\n", twoOrMoreClaims);
 
     // p2
 
+    deleteIntMatrix2D(matrix);
     fclose(input);
     return 0;
 }
