@@ -6,6 +6,9 @@
 #include "dictionary.h"
 
 #define MYINPUTLOC       "../input/day01_test1.txt"
+
+/*
+// from naive implementation
 #define MYARRAYSIZE      200000
 
 int addToArray(int num, int * array, int * size) {
@@ -26,6 +29,7 @@ int isInArray(int num, int * array, int size) {
     }
     return 0;
 }
+*/
 
 int main() {
     // input
@@ -50,8 +54,8 @@ int main() {
     // part 2
     sum = 0;
     currNum = 0;
-    int size = 0;
-    int array[MYARRAYSIZE];
+    /* int size = 0; // from naive implemntation*/
+    /* int array[MYARRAYSIZE]; // from naive implemntation*/
     int result = 0;
     char numAsString[33];
     struct dictNode* dictionary = newDictNode();
@@ -64,7 +68,7 @@ int main() {
 
             sprintf(numAsString, "%d", sum);
 
-            // Kinda hacky way to store ints in the dictionary:
+            // Kinda hacky way to store ints in our dictionary implementation:
             //    - The dictionary currently has space for 26 children (english alphabet)
             //    - Our ints contain digits {0 - 9} and also possibly '-'
             //        - the ASCII value of '0' is 48
