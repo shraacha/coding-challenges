@@ -1,11 +1,11 @@
-#include "dictionary.h"
-#include "intMatrix2D.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "intMatrix2D.h"
+
 #define MYINPUTLOC              "../input/day03_test1.txt"
-#define MAXINPUTLINESIZE        2000
+#define MAXINPUTLINECOUNT        2000
 
 int main() {
     // input
@@ -25,13 +25,14 @@ int main() {
     char* token;
     int id;
     int x, y, width, height;
-    int totalNumClaims = 0;
     int twoOrMoreClaims = 0;
 
     struct IntMatrix2D* claimCountMatrix = newIntMatrix2D(2, 2);
     struct IntMatrix2D* originalIDMatrix = newIntMatrix2D(2, 2);
 
-    int* overlappedIDs = malloc(MAXINPUTLINESIZE * sizeof(int));
+    int* overlappedIDs = malloc(MAXINPUTLINECOUNT * sizeof(int));
+
+    printf("test\n");
 
     while (fgets(currWord, 32, input) != NULL) {
         // tokenizing the input

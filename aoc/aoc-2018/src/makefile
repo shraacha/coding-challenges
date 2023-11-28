@@ -23,16 +23,25 @@ SOL = $(patsubst %,$(ODIR)/%,$(_OBJ))
 $(ODIR)/%.o: $(LIBDIR)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
+
+day01:
+	$(CC) -o $@.exe $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+
+day02: $(OBJ)
+	$(CC) -o $@.exe $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+
 day03: $(OBJ)
-	$(CC) -o $@ $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+	$(CC) -o $@.exe $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+
 
 dictionary_test01: $(OBJ)
-	$(CC) -o $@ $(TESTDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+	$(CC) -o $@.exe $(TESTDIR)/$@.c $^ $(CFLAGS) $(LIBS)
 
 intMatrix2D_test01: $(OBJ)
-	$(CC) -o $@ $(TESTDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+	$(CC) -o $@.exe $(TESTDIR)/$@.c $^ $(CFLAGS) $(LIBS)
+
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~
+	rm -f $(ODIR)/*.o *~ *.exe core $(IDIR)/*~

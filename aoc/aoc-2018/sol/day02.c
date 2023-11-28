@@ -3,11 +3,11 @@
 #include "constants.h"
 #include "dictionary.h"
 
-#define MYINPUTLOC              "../input/day02_in.txt"
+#define MYINPUTLOC              "../input/day02_test1.txt"
 
 // TODO: fix dictionary calls
 
-int main(int argc, char *argv[]) {
+int main() {
     // input
     FILE * input = fopen(MYINPUTLOC, "r");
 
@@ -68,13 +68,13 @@ int main(int argc, char *argv[]) {
 
       if (++wordCount == 1) {
         // if this is the first word, we just add to the dictionary
-        addWordToDict(dictionary, currWord, len);
+        addWordToDict(dictionary, currWord, len, MYLOWERAOFFSET);
       } else {
-        result = indexOfSingleWildcardChar(dictionary, currWord, len);
+        result = indexOfSingleWildcardChar(dictionary, currWord, len, MYLOWERAOFFSET);
         if (result >= 0) {
           break;
         } else {
-          addWordToDict(dictionary, currWord, len);
+          addWordToDict(dictionary, currWord, len, MYLOWERAOFFSET);
         }
       }
     }

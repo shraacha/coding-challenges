@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/syslimits.h>
 
-/* const char inputLoc [] = "input/day01_in.txt"; */
-
-#define MYINPUTLOC       "input/day01_in.txt"
+#define MYINPUTLOC       "../input/day01_in.txt"
 #define MYARRAYSIZE      200000
 
 int addToArray(int num, int * array, int * size) {
@@ -26,7 +23,7 @@ int isInArray(int num, int * array, int size) {
     return 0;
 }
 
-int main(int argc, char *argv[]) {
+int main() {
     // input
     FILE * input = fopen(MYINPUTLOC, "r");
 
