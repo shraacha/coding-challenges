@@ -78,7 +78,7 @@ int main() {
                 }
 
                 // increment value in the matrix
-                int claimCount = ++(claimCountMatrix->elements)[y + i][x + j];
+                int claimCount = ++((claimCountMatrix->elements)[y + i][x + j]);
 
                 if (claimCount >= 2) {
                     if (claimCount == 2) {
