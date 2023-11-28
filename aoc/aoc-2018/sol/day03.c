@@ -66,9 +66,18 @@ int main() {
         for(int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 // grow matrix until it is large enough
-                while (y + i >= claimCountMatrix->rows || x + j >= claimCountMatrix->cols) {
-                    growIntMatrix2D(&claimCountMatrix, claimCountMatrix->rows * 2, claimCountMatrix->cols * 2);
-                    growIntMatrix2D(&originalIDMatrix, claimCountMatrix->rows * 2, claimCountMatrix->cols * 2);
+                while (y + i >= claimCountMatrix->rows) {
+                  growIntMatrix2D(&claimCountMatrix, claimCountMatrix->rows * 2,
+                                  claimCountMatrix->cols);
+                  growIntMatrix2D(&originalIDMatrix, claimCountMatrix->rows * 2,
+                                  claimCountMatrix->cols);
+                }
+
+                while (x + j >= claimCountMatrix->cols) {
+                  growIntMatrix2D(&claimCountMatrix, claimCountMatrix->rows,
+                                  claimCountMatrix->cols * 2);
+                  growIntMatrix2D(&originalIDMatrix, claimCountMatrix->rows,
+                                  claimCountMatrix->cols * 2);
                 }
 
                 // if there were previously no claims, we add this as the original claim.
@@ -80,9 +89,17 @@ int main() {
                 // increment value in the matrix
                 int claimCount = ++((claimCountMatrix->elements)[y + i][x + j]);
 
+                // if the # of claims is now >= 2, we must mark this ID as being
+                //    overlapped.
                 if (claimCount >= 2) {
+                    // TODO: Mark an id as having been claimed already so that
+                    //     we don't need to do all of this checking for every
+                    //     subsequent tile in the claim.
+
+                    // We must also add the original claim as being overlapped.
                     if (claimCount == 2) {
-                        overlappedIDs[(originalIDMatrix->elements)[y + i][x + j] - 1] = 1;
+                      overlappedIDs[(originalIDMatrix->elements)[y + i][x + j] -
+                                    1] = 1;
                     }
 
                     overlappedIDs[id - 1] = 1;
@@ -102,6 +119,9 @@ int main() {
         }
     }
 
+    // Check for an ID that has not been overlapped with.
+    // We assume that the ids are increasing s.t. the id i is the i'th
+    //     entry in the input. This means we have n ids in total.
     int nonOverlapID = 0;
     for (int i = 0; i < id; i++) {
         if(overlappedIDs[i] == 0) {
@@ -111,8 +131,6 @@ int main() {
 
     printf("P1: %d\n", twoOrMoreClaims);
     printf("P2: %d\n", nonOverlapID);
-
-    // p2
 
     // cleanup
     free(overlappedIDs);
