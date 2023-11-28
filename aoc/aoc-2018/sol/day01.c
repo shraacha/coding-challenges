@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 
-#define MYINPUTLOC       "../input/day01_in.txt"
+#include "constants.h"
+#include "dictionary.h"
+
+#define MYINPUTLOC       "../input/day01_test1.txt"
 #define MYARRAYSIZE      200000
 
 int addToArray(int num, int * array, int * size) {
@@ -49,6 +53,8 @@ int main() {
     int size = 0;
     int array[MYARRAYSIZE];
     int result = 0;
+    char numAsString[33];
+    struct dictNode* dictionary = newDictNode();
 
     while (1) {
         rewind(input);
@@ -56,14 +62,26 @@ int main() {
         while (fscanf(input, "%d", &currNum) > 0) {
             sum += currNum;
 
-            if (isInArray(sum, array, size)) {
+            sprintf(numAsString, "%d", sum);
+
+            if (isWordInDict(dictionary, numAsString, strlen(numAsString),
+                             MYASCII0OFFSET)) {
               result = 1;
               goto end;
             } else {
-                if (addToArray(sum, array, &size) == 0) {
-                    goto end;
-                }
+              addWordToDict(dictionary, numAsString, strlen(numAsString),
+                            MYASCII0OFFSET);
             }
+
+            /* // TODO: use dict */
+            /* if (isInArray(sum, array, size)) { */
+            /*   result = 1; */
+            /*   goto end; */
+            /* } else { */
+            /*     if (addToArray(sum, array, &size) == 0) { */
+            /*         goto end; */
+            /*     } */
+            /* } */
         }
     }
 
@@ -74,6 +92,7 @@ end:
         printf("P2: oops\n");
     }
 
+    deleteDictNode(dictionary);
     fclose(input);
     return 0;
 }

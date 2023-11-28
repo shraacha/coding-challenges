@@ -24,7 +24,7 @@ $(ODIR)/%.o: $(LIBDIR)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 
-day01:
+day01: $(OBJ)
 	$(CC) -o $@.exe $(SOLDIR)/$@.c $^ $(CFLAGS) $(LIBS)
 
 day02: $(OBJ)
