@@ -68,6 +68,7 @@ int main() {
                 // grow matrix until it is large enough
                 while (y + i > claimCountMatrix->rows || x + j > claimCountMatrix->cols) {
                     growIntMatrix2D(&claimCountMatrix, claimCountMatrix->rows * 2, claimCountMatrix->cols * 2);
+                    growIntMatrix2D(&originalIDMatrix, claimCountMatrix->rows * 2, claimCountMatrix->cols * 2);
                 }
 
                 // if there were previously no claims, we add this as the original claim.
