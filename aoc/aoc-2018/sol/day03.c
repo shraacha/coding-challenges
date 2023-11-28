@@ -66,7 +66,7 @@ int main() {
         for(int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 // grow matrix until it is large enough
-                while (y + i > claimCountMatrix->rows || x + j > claimCountMatrix->cols) {
+                while (y + i >= claimCountMatrix->rows || x + j >= claimCountMatrix->cols) {
                     growIntMatrix2D(&claimCountMatrix, claimCountMatrix->rows * 2, claimCountMatrix->cols * 2);
                     growIntMatrix2D(&originalIDMatrix, claimCountMatrix->rows * 2, claimCountMatrix->cols * 2);
                 }
