@@ -64,24 +64,21 @@ int main() {
 
             sprintf(numAsString, "%d", sum);
 
+            // Kinda hacky way to store ints in the dictionary:
+            //    - The dictionary currently has space for 26 children (english alphabet)
+            //    - Our ints contain digits {0 - 9} and also possibly '-'
+            //        - the ASCII value of '0' is 48
+            //        - the ASCII value of '-' is 45
+            //        - we subtract the characters in our numbers by 45 to index our children
+            //           and we still have ample space for our digits
             if (isWordInDict(dictionary, numAsString, strlen(numAsString),
-                             MYASCII0OFFSET)) {
+                             MYASCIIMINUSOFFSET)) {
               result = 1;
               goto end;
             } else {
               addWordToDict(dictionary, numAsString, strlen(numAsString),
-                            MYASCII0OFFSET);
+                            MYASCIIMINUSOFFSET);
             }
-
-            /* // TODO: use dict */
-            /* if (isInArray(sum, array, size)) { */
-            /*   result = 1; */
-            /*   goto end; */
-            /* } else { */
-            /*     if (addToArray(sum, array, &size) == 0) { */
-            /*         goto end; */
-            /*     } */
-            /* } */
         }
     }
 
