@@ -12,7 +12,7 @@ mod day09;
 mod day10;
 
 fn main() {
-    //println!("day01 a: {}", day01::a("./inputs/day01.txt"));
+    println!("day01 a: {}", day01::a("./inputs/day01.txt"));
     //println!("day01 b: {}", day01::b("./inputs/day01.txt"));
 
     //println!("day02 a: {}", day02::a("./inputs/day02.txt"));

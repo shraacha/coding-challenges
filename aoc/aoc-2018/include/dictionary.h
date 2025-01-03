@@ -11,8 +11,6 @@
 // TODO: add offset to the struct
 
 // struct for a dictionary implementation as a trie
-// *Note* this dictionary impl currently only works for
-//   words of the same length.
 // Currently only has 26 children (designed primarily for an english word trie) per node.
 struct dictNode {
     int status;   // status of the node (holds a value/doesn't hold a value);
