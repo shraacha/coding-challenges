@@ -1,0 +1,2 @@
+-std=c17
+-I/Users/anish/Documents/Github/coding-challenges/aoc/aoc-2024/include/
