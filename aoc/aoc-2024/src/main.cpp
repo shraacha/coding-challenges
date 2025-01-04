@@ -3,68 +3,79 @@
 #include "day01.hpp"
 #include "day02.hpp"
 #include "day03.hpp"
+#include "dayHelpers.hpp"
 
-#include <cassert>
-#include <functional>
 #include <fstream>
 #include <iostream>
 #include <memory>
+#include <stdexcept>
 #include <string>
-#include <utility>
+#include <vector>
+#include <stdexcept>
 
-std::pair<std::optional<Solution>, std::optional<Solution>> evaluateDay(const Day & day,
-                           const std::string &fileName)
+std::string getPathToInputDir()
 {
-    return std::make_pair(day.part1(fileName), day.part2(fileName));
+    return "../input";
 }
 
-void printResults(std::ostream & os, std::pair<std::optional<Solution>, std::optional<Solution>> results)
-{
-    std::cout << "part 1: " << results.first << std::endl;
-    std::cout << "part 2: " << results.second << std::endl;
-}
-
-std::string dayNumAsString (const int & i, const unsigned int & width = 2)
-{
-    std::string str = std::to_string(i);
-    assert(str.size() <= width);
-
-    int numPad = width - str.size();
-    str.insert(0, numPad, '0');
-
-    return str;
+bool canOpenFile(const std::string &fileName) {
+  std::ifstream file(fileName);
+  return file.good();
 }
 
 int main(int argc, char* argv[])
 {
-    std::vector<std::unique_ptr<Day>> days;
+    std::vector<std::unique_ptr<Day>> days = makeVectorOfDayUniquePointers<Day01, Day02, Day03>();
 
-    days.emplace_back(std::make_unique<Day01>());
-    days.emplace_back(std::make_unique<Day02>());
-    days.emplace_back(std::make_unique<Day03>());
+    auto evaluateAndPrintDayResults = [&](const int &dayNum,
+                                          std::string fileName = "") {
+      std::cout << "Day " << dayNum << ":" << std::endl;
 
-    if (argc == 1) {
-      // evaluate all days
+      if (fileName == "") {
+        fileName = getPathToInputDir() + "/day" + dayNumAsString(dayNum) + ".txt";
+      }
 
-      for (int i = 0; i < days.size(); ++i) {
-        int dayNum = i + 1;
-        std::string dayNumString = dayNumAsString(dayNum);
+      std::cout << "Using file: " << fileName << std::endl;
 
-        std::cout << "Day " << dayNum << ":" << std::endl;
+      if (canOpenFile(fileName)) {
+        printResults(std::cout, evaluate(*days[dayNum - 1], fileName));
+      } else {
+        std::cout << "File opening failed." << std::endl;
+      }
 
-        std::string fileName = "../input/day" + dayNumString + ".txt";
-        std::cout << "using file: " << fileName << std::endl;
-        std::ifstream file = std::ifstream(fileName, std::ios::in);
+      std::cout << std::endl;
+    };
 
-        if (!file)
-        {
-            std::cout << "file opening failed" << std::endl;
+    try {
+      if (argc == 1) {
+        // evaluate all days
+        for (int i = 0; i < days.size(); ++i) {
+          evaluateAndPrintDayResults(i + 1);
+        }
+      } else if (argc == 2) {
+        // evaluate a specific day
+        if (int i = std::stoi(argv[1]); i > 0 && i <= days.size()) {
+          evaluateAndPrintDayResults(i);
         } else {
-            printResults(std::cout, evaluateDay(*days[i], fileName));
+          throw std::invalid_argument("Day number out of bounds.");
+        }
+      } else if (argc == 3) {
+        // evaluate a specific day using a specific file
+        int i = std::stoi(argv[1]);
+        std::string fileName(argv[2]);
+
+        if (!(i > 0 && i <= days.size())) {
+          throw std::invalid_argument("Day number out of bounds.");
         }
 
-        std::cout << std::endl;
+        if (!canOpenFile(fileName)) {
+          throw std::invalid_argument("File not found.");
+        }
+
+        evaluateAndPrintDayResults(i, fileName);
       }
+    } catch (const std::exception &ex) {
+      std::cout << ex.what() << std::endl;
     }
 
     return 0;
