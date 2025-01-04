@@ -3,8 +3,9 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <numeric>
 #include <ranges>
-#include <set>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -42,12 +43,9 @@ std::optional<Solution> Day01::part2(const std::string &fileName) const {
     std::ifstream file = std::ifstream(fileName, std::ios::in);
     std::pair<std::vector<int>, std::vector<int>> input = parseDay01(file);
 
-    std::multiset<int> set(input.second.begin(), input.second.end());
+    std::unordered_multiset<int> set(input.second.begin(), input.second.end());
 
-    int sum = 0;
-    for (const int &i : input.first) {
-      sum += i * set.count(i);
-    }
-
-    return sum;
+    return std::accumulate(
+        input.first.begin(), input.first.end(), 0,
+        [&](const int &a, const int &b) -> int { return a + b * set.count(b); });
 }

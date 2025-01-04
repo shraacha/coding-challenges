@@ -1,4 +1,3 @@
-#include "helpers.hpp"
 #include "solution.hpp"
 #include "day.hpp"
 #include "day01.hpp"
@@ -38,7 +37,7 @@ std::string dayNumAsString (const int & i, const unsigned int & width = 2)
 
 int main(int argc, char* argv[])
 {
-    std::vector<std::unique_ptr<day>> days;
+    std::vector<std::unique_ptr<Day>> days;
 
     days.emplace_back(std::make_unique<Day01>());
     days.emplace_back(std::make_unique<Day02>());

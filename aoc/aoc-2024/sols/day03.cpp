@@ -68,7 +68,7 @@ public:
    * - vector of the parsed tokens if matched
    */
   std::optional<std::vector<std::string>>
-  simpleOnlineMatchAgainstPattern(const char &c) {
+  simpleOnlineMatch(const char &c) {
     if (pattern[t] == "UINT") {
       // indefinite token
       if (c >= '0' && c <= '9') {
@@ -81,7 +81,7 @@ public:
           resetState();
           return parsedTokens;
         } else {
-          return simpleOnlineMatchAgainstPattern(c);
+          return simpleOnlineMatch(c);
         }
       }
     } else {
@@ -117,7 +117,7 @@ std::optional<Solution> Day03::part1(const std::string &fileName) const {
     PatternMatcher pattern({"mul(", "UINT", ",", "UINT", ")"});
 
     while (fileStream >> c) {
-        auto result = pattern.simpleOnlineMatchAgainstPattern(c);
+        auto result = pattern.simpleOnlineMatch(c);
 
         if (result.has_value()) {
             sum += std::stoi(result.value()[1]) * std::stoi(result.value()[3]);
@@ -139,9 +139,9 @@ std::optional<Solution> Day03::part2(const std::string &fileName) const {
     PatternMatcher dontPattern({"don't()"});
 
     while (fileStream >> c) {
-        auto mulResult = mulPattern.simpleOnlineMatchAgainstPattern(c);
-        auto doResult = doPattern.simpleOnlineMatchAgainstPattern(c);
-        auto dontResult = dontPattern.simpleOnlineMatchAgainstPattern(c);
+        auto mulResult = mulPattern.simpleOnlineMatch(c);
+        auto doResult = doPattern.simpleOnlineMatch(c);
+        auto dontResult = dontPattern.simpleOnlineMatch(c);
 
         if (doResult.has_value()) {
             doState = true;
