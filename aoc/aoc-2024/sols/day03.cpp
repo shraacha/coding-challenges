@@ -106,19 +106,9 @@ public:
   }
 };
 
-// returns true of the token is indefinite
-bool isIndefinite(const std::string &str) {
-  if (str == "UINT") {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 
 // sols
-int day03Part1 (const std::string & fileName)
-{
+std::optional<Solution> Day03::part1(const std::string &fileName) const {
     int sum = 0;
 
     std::ifstream fileStream(fileName, std::ios::in);
@@ -137,8 +127,7 @@ int day03Part1 (const std::string & fileName)
     return sum;
 }
 
-int day03Part2 (const std::string & fileName)
-{
+std::optional<Solution> Day03::part2(const std::string &fileName) const {
     int sum = 0;
 
     std::ifstream fileStream(fileName, std::ios::in);

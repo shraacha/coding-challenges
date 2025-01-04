@@ -128,7 +128,7 @@ static bool areNumbersValidWithDampening(const std::vector<int> & vec)
     }
 }
 
-int day02Part1 (const std::string & fileName)
+std::optional<Solution> Day02::part1(const std::string &fileName) const
 {
     std::ifstream fileStream(fileName, std::ios::in);
     auto input = parseDay02(fileStream);
@@ -139,7 +139,7 @@ int day02Part1 (const std::string & fileName)
                     });
 }
 
-int day02Part2 (const std::string & fileName)
+std::optional<Solution> Day02::part2(const std::string &fileName) const
 {
     std::ifstream fileStream(fileName, std::ios::in);
     auto input = parseDay02(fileStream);

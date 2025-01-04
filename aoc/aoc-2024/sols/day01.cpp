@@ -21,10 +21,9 @@ std::pair<std::vector<int>, std::vector<int> > parseDay01 (std::istream & in)
     return std::make_pair(v1, v2);
 }
 
-int day01Part1 (const std::string & fileName)
-{
+std::optional<Solution> Day01::part1(const std::string &fileName) const {
     std::ifstream file = std::ifstream(fileName, std::ios::in);
-    std::pair<std::vector<int>, std::vector<int> > input = parseDay01(file);
+    std::pair<std::vector<int>, std::vector<int>> input = parseDay01(file);
 
     std::sort(input.first.begin(), input.first.end());
     std::sort(input.second.begin(), input.second.end());
@@ -39,16 +38,15 @@ int day01Part1 (const std::string & fileName)
     return sum;
 }
 
-int day01Part2 (const std::string & fileName)
-{
+std::optional<Solution> Day01::part2(const std::string &fileName) const {
     std::ifstream file = std::ifstream(fileName, std::ios::in);
-    std::pair<std::vector<int>, std::vector<int> > input = parseDay01(file);
+    std::pair<std::vector<int>, std::vector<int>> input = parseDay01(file);
 
     std::multiset<int> set(input.second.begin(), input.second.end());
 
     int sum = 0;
-    for (const int & i : input.first) {
-        sum += i * set.count(i);
+    for (const int &i : input.first) {
+      sum += i * set.count(i);
     }
 
     return sum;

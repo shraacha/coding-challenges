@@ -2,6 +2,10 @@
 
 #include <string>
 
-int day03Part1 (const std::string & fileName);
+#include "day.hpp"
 
-int day03Part2 (const std::string & fileName);
+class Day03 : public Day {
+  virtual std::optional<Solution> part1(const std::string &fileName) const override;
+
+  virtual std::optional<Solution> part2(const std::string &fileName) const override;
+};

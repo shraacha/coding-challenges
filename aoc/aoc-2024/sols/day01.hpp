@@ -1,12 +1,11 @@
 #pragma once
 
-#include <vector>
-#include <utility>
-#include <iostream>
 #include <string>
 
-std::pair<std::vector<int>, std::vector<int> > parseDay01 (std::istream & in);
+#include "day.hpp"
 
-int day01Part1 (const std::string & fileName);
+class Day01 : public Day {
+  virtual std::optional<Solution> part1(const std::string &fileName) const override;
 
-int day01Part2 (const std::string & fileName);
+  virtual std::optional<Solution> part2(const std::string &fileName) const override;
+};

@@ -1,8 +1,11 @@
 #pragma once
 
-#include <iostream>
 #include <string>
 
-int day02Part1 (const std::string & fileName);
+#include "day.hpp"
 
-int day02Part2 (const std::string & fileName);
+class Day02 : public Day {
+  virtual std::optional<Solution> part1(const std::string &fileName) const override;
+
+  virtual std::optional<Solution> part2(const std::string &fileName) const override;
+};
