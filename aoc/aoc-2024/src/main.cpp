@@ -27,8 +27,8 @@ int main(int argc, char* argv[])
 {
     std::vector<std::unique_ptr<Day>> days = makeVectorOfDayUniquePointers<Day01, Day02, Day03>();
 
-    auto evaluateAndPrintDayResults = [&](const int &dayNum,
-                                          std::string fileName = "") {
+    auto evaluateDay = [&](const int &dayNum,
+                                          std::string fileName = "") -> std::pair<std::optional<Solution>, std::optional<Solution>> {
       std::cout << "Day " << dayNum << ":" << std::endl;
 
       if (fileName == "") {
@@ -38,24 +38,24 @@ int main(int argc, char* argv[])
       std::cout << "Using file: " << fileName << std::endl;
 
       if (canOpenFile(fileName)) {
-        printResults(std::cout, evaluate(*days[dayNum - 1], fileName));
+        return evaluate(*days[dayNum - 1], fileName);
       } else {
         std::cout << "File opening failed." << std::endl;
+        std::cout << std::endl;
+        throw std::invalid_argument("File not found.");
       }
-
-      std::cout << std::endl;
     };
 
     try {
       if (argc == 1) {
         // evaluate all days
         for (int i = 0; i < days.size(); ++i) {
-          evaluateAndPrintDayResults(i + 1);
+          printResults(std::cout, evaluateDay(i+1));
         }
       } else if (argc == 2) {
         // evaluate a specific day
         if (int i = std::stoi(argv[1]); i > 0 && i <= days.size()) {
-          evaluateAndPrintDayResults(i);
+          printResults(std::cout, evaluateDay(i));
         } else {
           throw std::invalid_argument("Day number out of bounds.");
         }
@@ -68,11 +68,7 @@ int main(int argc, char* argv[])
           throw std::invalid_argument("Day number out of bounds.");
         }
 
-        if (!canOpenFile(fileName)) {
-          throw std::invalid_argument("File not found.");
-        }
-
-        evaluateAndPrintDayResults(i, fileName);
+        printResults(std::cout, evaluateDay(i, fileName));
       }
     } catch (const std::exception &ex) {
       std::cout << ex.what() << std::endl;
